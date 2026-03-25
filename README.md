@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/logos/logo.png" alt="FlyAnyTrip Logo" height="80" />
+</p>
+
 # ✈️ FlyAnyTrip — Frontend
 
 A premium travel booking web application built with **React + Vite**, featuring a modern glassmorphism UI, smooth animations, and a comprehensive set of travel services.
