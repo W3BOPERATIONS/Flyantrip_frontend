@@ -1,3 +1,67 @@
+export const airports = [
+  // India
+  { iata: 'DEL', name: 'Indira Gandhi International', city: 'New Delhi', country: 'India' },
+  { iata: 'BOM', name: 'Chhatrapati Shivaji Maharaj International', city: 'Mumbai', country: 'India' },
+  { iata: 'BLR', name: 'Kempegowda International', city: 'Bengaluru', country: 'India' },
+  { iata: 'MAA', name: 'Chennai International', city: 'Chennai', country: 'India' },
+  { iata: 'HYD', name: 'Rajiv Gandhi International', city: 'Hyderabad', country: 'India' },
+  { iata: 'CCU', name: 'Netaji Subhas Chandra Bose International', city: 'Kolkata', country: 'India' },
+  { iata: 'COK', name: 'Cochin International', city: 'Kochi', country: 'India' },
+  { iata: 'PNQ', name: 'Pune Airport', city: 'Pune', country: 'India' },
+  { iata: 'AMD', name: 'Sardar Vallabhbhai Patel International', city: 'Ahmedabad', country: 'India' },
+  { iata: 'GOI', name: 'Dabolim Airport', city: 'Goa', country: 'India' },
+  { iata: 'JAI', name: 'Jaipur International', city: 'Jaipur', country: 'India' },
+  { iata: 'LKO', name: 'Chaudhary Charan Singh International', city: 'Lucknow', country: 'India' },
+  { iata: 'VNS', name: 'Lal Bahadur Shastri International', city: 'Varanasi', country: 'India' },
+  { iata: 'BDQ', name: 'Vadodara Airport', city: 'Vadodara', country: 'India' },
+  { iata: 'STV', name: 'Surat Airport', city: 'Surat', country: 'India' },
+  // UK & Europe
+  { iata: 'LHR', name: 'Heathrow', city: 'London', country: 'UK' },
+  { iata: 'LGW', name: 'Gatwick', city: 'London', country: 'UK' },
+  { iata: 'CDG', name: 'Charles de Gaulle', city: 'Paris', country: 'France' },
+  { iata: 'AMS', name: 'Amsterdam Schiphol', city: 'Amsterdam', country: 'Netherlands' },
+  { iata: 'FRA', name: 'Frankfurt am Main', city: 'Frankfurt', country: 'Germany' },
+  { iata: 'MUC', name: 'Munich International', city: 'Munich', country: 'Germany' },
+  { iata: 'ZUR', name: 'Zurich Airport', city: 'Zurich', country: 'Switzerland' },
+  { iata: 'FCO', name: 'Leonardo da Vinci–Fiumicino', city: 'Rome', country: 'Italy' },
+  { iata: 'BCN', name: 'Josep Tarradellas Barcelona–El Prat', city: 'Barcelona', country: 'Spain' },
+  { iata: 'MAD', name: 'Adolfo Suárez Madrid–Barajas', city: 'Madrid', country: 'Spain' },
+  // Middle East
+  { iata: 'DXB', name: 'Dubai International', city: 'Dubai', country: 'UAE' },
+  { iata: 'AUH', name: 'Abu Dhabi International', city: 'Abu Dhabi', country: 'UAE' },
+  { iata: 'DOH', name: 'Hamad International', city: 'Doha', country: 'Qatar' },
+  { iata: 'RUH', name: 'King Khalid International', city: 'Riyadh', country: 'Saudi Arabia' },
+  { iata: 'MCT', name: 'Muscat International', city: 'Muscat', country: 'Oman' },
+  // Asia Pacific
+  { iata: 'SIN', name: 'Singapore Changi', city: 'Singapore', country: 'Singapore' },
+  { iata: 'BKK', name: 'Suvarnabhumi', city: 'Bangkok', country: 'Thailand' },
+  { iata: 'HKG', name: 'Hong Kong International', city: 'Hong Kong', country: 'China' },
+  { iata: 'NRT', name: 'Narita International', city: 'Tokyo', country: 'Japan' },
+  { iata: 'HND', name: 'Haneda Airport', city: 'Tokyo', country: 'Japan' },
+  { iata: 'ICN', name: 'Incheon International', city: 'Seoul', country: 'South Korea' },
+  { iata: 'KUL', name: 'Kuala Lumpur International', city: 'Kuala Lumpur', country: 'Malaysia' },
+  { iata: 'CGK', name: 'Soekarno–Hatta International', city: 'Jakarta', country: 'Indonesia' },
+  { iata: 'DPS', name: 'Ngurah Rai International', city: 'Bali', country: 'Indonesia' },
+  { iata: 'HAN', name: 'Noi Bai International', city: 'Hanoi', country: 'Vietnam' },
+  { iata: 'SGN', name: 'Tan Son Nhat International', city: 'Ho Chi Minh City', country: 'Vietnam' },
+  { iata: 'PEK', name: 'Beijing Capital International', city: 'Beijing', country: 'China' },
+  { iata: 'PVG', name: 'Shanghai Pudong International', city: 'Shanghai', country: 'China' },
+  // USA & Canada
+  { iata: 'JFK', name: 'John F. Kennedy International', city: 'New York', country: 'USA' },
+  { iata: 'LAX', name: 'Los Angeles International', city: 'Los Angeles', country: 'USA' },
+  { iata: 'ORD', name: "O'Hare International", city: 'Chicago', country: 'USA' },
+  { iata: 'SFO', name: 'San Francisco International', city: 'San Francisco', country: 'USA' },
+  { iata: 'MIA', name: 'Miami International', city: 'Miami', country: 'USA' },
+  { iata: 'YYZ', name: 'Toronto Pearson International', city: 'Toronto', country: 'Canada' },
+  { iata: 'YVR', name: 'Vancouver International', city: 'Vancouver', country: 'Canada' },
+  // Australia
+  { iata: 'SYD', name: 'Sydney Kingsford Smith', city: 'Sydney', country: 'Australia' },
+  { iata: 'MEL', name: 'Melbourne Airport', city: 'Melbourne', country: 'Australia' },
+  // Africa
+  { iata: 'JNB', name: 'O.R. Tambo International', city: 'Johannesburg', country: 'South Africa' },
+  { iata: 'CAI', name: 'Cairo International', city: 'Cairo', country: 'Egypt' },
+];
+
 export const tourDestinations = ['Thailand', 'Vietnam', 'Dubai', 'Singapore', 'India', 'Oman', 'Bali'];
 export const visaDestinations = ['Thailand', 'Vietnam', 'Dubai', 'Singapore', 'Oman', 'Bali'];
 export const activityDestinations = ['Thailand', 'Vietnam', 'Dubai', 'Singapore', 'Vadodara', 'Oman', 'Bali'];

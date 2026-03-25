@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { 
+  airports as mockAirports,
   tourDestinations, 
   visaDestinations, 
   activityDestinations, 
@@ -13,8 +14,8 @@ export const useSearchState = () => {
   const [to, setTo] = useState({ iata: 'LHR', name: 'Heathrow', city: 'London', country: 'UK' });
   const [searching, setSearching] = useState(false);
   const [results, setResults] = useState([]);
-  const [airports, setAirports] = useState([]);
-  const [filteredAirports, setFilteredAirports] = useState([]);
+  const [airports, setAirports] = useState(mockAirports);
+  const [filteredAirports, setFilteredAirports] = useState(mockAirports);
   const [showFromMenu, setShowFromMenu] = useState(false);
   const [showToMenu, setShowToMenu] = useState(false);
   const [departureDate, setDepartureDate] = useState(new Date());
@@ -44,17 +45,22 @@ export const useSearchState = () => {
   const fetchAirports = async () => {
     try {
       const res = await axios.get('http://localhost:5001/api/airports');
-      setAirports(res.data);
-      setFilteredAirports(res.data);
+      if (res.data && res.data.length > 0) {
+        setAirports(res.data);
+        setFilteredAirports(res.data);
+      }
     } catch (err) {
-      console.error('API Error:', err);
+      // Backend not available — mock data already loaded as default
     }
   };
 
   const handleAirportSearch = (query) => {
+    const q = query.toLowerCase();
     const filtered = airports.filter(a =>
-      a.iata.toLowerCase().includes(query.toLowerCase()) ||
-      a.name.toLowerCase().includes(query.toLowerCase())
+      a.iata.toLowerCase().includes(q) ||
+      a.name.toLowerCase().includes(q) ||
+      a.city.toLowerCase().includes(q) ||
+      a.country.toLowerCase().includes(q)
     );
     setFilteredAirports(filtered);
   };
