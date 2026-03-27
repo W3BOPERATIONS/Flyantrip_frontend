@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plane, Search, ArrowRightLeft, ChevronDown } from 'lucide-react';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const FlightSearch = ({ 
   tripType, setTripType, from, setFrom, to, setTo, 

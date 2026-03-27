@@ -1,13 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CreditCard, UserCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ activeTab, setActiveTab }) => (
   <nav className="sticky top-0 z-[1000] h-[64px] flex items-stretch bg-white/80 backdrop-blur-xl border-b border-black/5 shadow-sm">
     <div className="max-w-[1200px] w-full mx-auto px-6 flex justify-between items-stretch h-full">
       <div className="flex items-stretch gap-8">
         <div className="flex items-center">
-          <img src="/logos/logo.png" alt="FlyAnyTrip" className="h-10 w-auto" />
+          <Link to="/">
+            <img src="/logos/logo.png" alt="FlyAnyTrip" className="h-10 w-auto cursor-pointer" />
+          </Link>
         </div>
         <div className="flex gap-8">
           {['flights', 'tours', 'visa', 'activity', 'train', 'pnr'].map((tab) => (

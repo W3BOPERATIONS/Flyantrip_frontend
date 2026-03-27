@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { 
   airports as mockAirports,
   tourDestinations, 
@@ -9,6 +10,7 @@ import {
 } from '../utils/mockData';
 
 export const useSearchState = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('flights');
   const [from, setFrom] = useState({ iata: 'DEL', name: 'Indira Gandhi International', city: 'New Delhi', country: 'India' });
   const [to, setTo] = useState({ iata: 'LHR', name: 'Heathrow', city: 'London', country: 'UK' });
@@ -19,7 +21,7 @@ export const useSearchState = () => {
   const [showFromMenu, setShowFromMenu] = useState(false);
   const [showToMenu, setShowToMenu] = useState(false);
   const [departureDate, setDepartureDate] = useState(new Date());
-  const [dateRange, setDateRange] = useState([new Date(), null]);
+  const [dateRange, setDateRange] = useState([null, null]);
   const [tripType, setTripType] = useState('round');
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
@@ -111,9 +113,7 @@ export const useSearchState = () => {
       }
       setResults(mockResults);
       setSearching(false);
-      setTimeout(() => {
-        document.getElementById('search-results-section')?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      navigate('/results');
     }, 1200);
   };
 
