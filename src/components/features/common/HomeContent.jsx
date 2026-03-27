@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { ArrowRightLeft, Search } from 'lucide-react';
 
 const HomeContent = ({ results, searching }) => {
-  if (results.length > 0 || searching) return null;
 
   return (
     <>
