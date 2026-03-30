@@ -40,7 +40,7 @@ const Home = () => {
       <Hero>
         <section className="w-full max-w-[1200px] mx-auto z-50">
           <div className="glass-card rounded-3xl">
-            <div className="flex bg-white/50 border-b border-black/5 rounded-t-3xl overflow-hidden">
+            <div id="search-tabs" className="flex bg-white/50 border-b border-black/5 rounded-t-3xl overflow-hidden">
               {tabs.map((item) => (
                 <button
                   key={item.id}

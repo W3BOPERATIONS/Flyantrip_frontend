@@ -30,12 +30,12 @@ export const useSearchState = () => {
   const [showTravelersMenu, setShowTravelersMenu] = useState(false);
 
   // New States for other tabs
-  const [tourDest, setTourDest] = useState('Thailand');
+  const [tourDest, setTourDest] = useState('');
   const [showTourMenu, setShowTourMenu] = useState(false);
   const [visaCountry, setVisaCountry] = useState('Thailand');
   const [visaType, setVisaType] = useState('Digital Arrival Card');
   const [showVisaMenu, setShowVisaMenu] = useState(false);
-  const [activityCity, setActivityCity] = useState('Thailand');
+  const [activityCity, setActivityCity] = useState('');
   const [showActivityMenu, setShowActivityMenu] = useState(false);
   const [trainNumber, setTrainNumber] = useState('');
   const [pnrNumber, setPnrNumber] = useState('');
