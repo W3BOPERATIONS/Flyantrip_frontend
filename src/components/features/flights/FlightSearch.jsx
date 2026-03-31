@@ -26,11 +26,11 @@ const FlightSearch = ({
         </label>
       </div>
 
-      <div className="grid grid-cols-[1.2fr_0.8fr_0.6fr_auto] gap-4 items-end">
+      <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)_minmax(0,0.6fr)_auto] gap-4 items-end">
         <div className="relative flex items-center bg-white border border-black/10 rounded-2xl transition-all hover:shadow-md hover:border-brand-red focus-within:border-brand-red focus-within:shadow-md h-[100px] group/container">
           {/* From Section */}
           <div 
-            className="w-1/2 min-w-0 h-full pl-8 pr-10 cursor-pointer hover:bg-black/[0.02] flex flex-col justify-center transition-colors relative"
+            className="flex-1 min-w-0 h-full pl-8 pr-10 cursor-pointer hover:bg-black/[0.02] flex flex-col justify-center transition-colors relative"
             onClick={() => {
               setShowFromMenu(!showFromMenu);
               setShowToMenu(false);
@@ -41,7 +41,7 @@ const FlightSearch = ({
               <div className="w-1.5 h-1.5 rounded-full bg-brand-red" />
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-brand-black/30">FROM</span>
             </div>
-            <div className="text-2xl font-black text-brand-black leading-none mb-1.5 truncate">{from.city}</div>
+            <div className="text-2xl font-black text-brand-black leading-tight mb-1 truncate">{from.city}</div>
             <div className="text-[12px] font-bold text-brand-black/40 truncate">[{from.iata}] {from.name}</div>
             
             <AnimatePresence>
@@ -105,7 +105,7 @@ const FlightSearch = ({
 
           {/* To Section */}
           <div 
-            className="w-1/2 min-w-0 h-full pr-8 pl-10 cursor-pointer hover:bg-black/[0.02] flex flex-col justify-center transition-colors relative"
+            className="flex-1 min-w-0 h-full pr-8 pl-10 cursor-pointer hover:bg-black/[0.02] flex flex-col justify-center transition-colors relative"
             onClick={() => {
               setShowToMenu(!showToMenu);
               setShowFromMenu(false);
@@ -116,7 +116,7 @@ const FlightSearch = ({
               <div className="w-1.5 h-1.5 rounded-full bg-brand-red opacity-40" />
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-brand-black/30">TO</span>
             </div>
-            <div className="text-2xl font-black text-brand-black leading-none mb-1.5 truncate">{to.city}</div>
+            <div className="text-2xl font-black text-brand-black leading-tight mb-1 truncate">{to.city}</div>
             <div className="text-[12px] font-bold text-brand-black/40 truncate">[{to.iata}] {to.name}</div>
 
             <AnimatePresence>
@@ -312,7 +312,7 @@ const FlightSearch = ({
         </div>
 
         <button
-          className="bg-brand-black text-white h-[58px] px-10 rounded-xl font-bold flex items-center gap-3 transition-all active:scale-95 hover:bg-brand-red hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-brand-black text-white h-[58px] min-w-[160px] px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all active:scale-95 hover:bg-brand-red hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={handleSearch}
           disabled={searching}
         >
