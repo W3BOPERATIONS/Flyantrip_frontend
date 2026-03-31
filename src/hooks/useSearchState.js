@@ -40,6 +40,8 @@ export const useSearchState = () => {
   const [trainNumber, setTrainNumber] = useState('');
   const [pnrNumber, setPnrNumber] = useState('');
 
+  const [searchError, setSearchError] = useState('');
+
   useEffect(() => {
     fetchAirports();
   }, []);
@@ -84,6 +86,30 @@ export const useSearchState = () => {
   };
 
   const handleSearch = () => {
+    setSearchError('');
+    let isValid = true;
+
+    if (activeTab === 'flights') {
+      if (!from || !to) isValid = false;
+      if (tripType === 'round' && (!dateRange[0] || !dateRange[1])) isValid = false;
+      if (tripType === 'one' && !departureDate) isValid = false;
+    } else if (activeTab === 'tours') {
+      if (!tourDest) isValid = false;
+    } else if (activeTab === 'visa') {
+      if (!visaCountry || !visaType) isValid = false;
+    } else if (activeTab === 'activity') {
+      if (!activityCity) isValid = false;
+    } else if (activeTab === 'train') {
+      if (!trainNumber || trainNumber.trim() === '') isValid = false;
+    } else if (activeTab === 'pnr') {
+      if (!pnrNumber || pnrNumber.trim() === '') isValid = false;
+    }
+
+    if (!isValid) {
+      setSearchError("Fill all the details first");
+      return;
+    }
+
     setSearching(true);
     setResults([]);
 
@@ -147,6 +173,7 @@ export const useSearchState = () => {
     activityDestinations,
     trainNumber, setTrainNumber,
     pnrNumber, setPnrNumber,
+    searchError, setSearchError,
     handleAirportSearch, selectAirport, swapAirports, handleSearch
   };
 };

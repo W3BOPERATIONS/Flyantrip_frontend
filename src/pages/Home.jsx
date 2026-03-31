@@ -31,7 +31,7 @@ const features = [
 
 const Home = () => {
   const searchState = useSearchContext();
-  const { activeTab, setActiveTab, results, searching } = searchState;
+  const { activeTab, setActiveTab, results, searching, searchError, setSearchError } = searchState;
   
   const ActiveComponent = tabs.find(t => t.id === activeTab)?.Component;
 
@@ -45,7 +45,7 @@ const Home = () => {
                 <button
                   key={item.id}
                   className={`flex items-center gap-3 px-8 py-5 text-sm font-bold transition-all duration-300 border-r border-black/5 relative hover:bg-white/40 ${activeTab === item.id ? 'text-brand-red' : 'text-brand-black/60'}`}
-                  onClick={() => setActiveTab(item.id)}
+                  onClick={() => { setActiveTab(item.id); setSearchError(''); }}
                 >
                   <item.icon size={18} />
                   {item.label}
@@ -61,6 +61,12 @@ const Home = () => {
             </div>
 
             <div className="p-8">
+              {searchError && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 text-[#ce3131] font-bold rounded-xl flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  {searchError}
+                </div>
+              )}
               {ActiveComponent && <ActiveComponent {...searchState} />}
             </div>
           </div>

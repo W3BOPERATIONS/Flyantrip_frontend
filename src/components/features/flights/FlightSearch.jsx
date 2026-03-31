@@ -175,6 +175,7 @@ const FlightSearch = ({
                 selectsRange={true}
                 startDate={startDate}
                 endDate={endDate}
+                minDate={new Date()}
                 onChange={(update) => setDateRange(update)}
                 className="w-full outline-none bg-transparent cursor-pointer"
                 dateFormat="dd MMM"
@@ -183,6 +184,7 @@ const FlightSearch = ({
             ) : (
               <DatePicker
                 selected={departureDate}
+                minDate={new Date()}
                 onChange={(date) => setDepartureDate(date)}
                 className="w-full outline-none bg-transparent cursor-pointer"
                 dateFormat="dd MMM, yyyy"
@@ -276,12 +278,12 @@ const FlightSearch = ({
                   </div>
 
                   <div className="pt-4 border-t border-black/5">
-                    <div className="text-sm font-extrabold text-brand-black mb-3 uppercase tracking-widest">Travel Class</div>
+                    <div className="text-[13px] font-bold text-black mb-3 uppercase tracking-wider">Travel Class</div>
                     <div className="grid grid-cols-2 gap-3">
                       {['Economy', 'Premium Economy', 'Business', 'First Class'].map(cls => (
                         <button
                           key={cls}
-                          className={`py-3 px-3 rounded-xl text-[13px] font-bold transition-all flex flex-col items-center justify-center leading-snug min-h-[52px] ${travelClass === cls ? 'bg-[#E5192A] text-white shadow-md' : 'bg-[#F2F2F2] text-brand-black/80 hover:bg-[#E5E5E5] hover:text-brand-black'}`}
+                          className={`py-2 px-3 rounded-xl text-[14px] font-semibold transition-all flex flex-col items-center justify-center leading-[1.2] min-h-[64px] ${travelClass === cls ? 'bg-[#ce3131] text-white shadow-sm' : 'bg-[#f4f4f4] text-[#333333] hover:bg-[#ebebeb]'}`}
                           onClick={() => setTravelClass(cls)}
                         >
                           {cls === 'Premium Economy' ? (
