@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
+import TourDetails from './pages/TourDetails';
 import { SearchProvider, useSearchContext } from './context/SearchContext';
 import { 
   Plane, Compass, FileText, Activity, Train, ClipboardCheck,
@@ -21,6 +22,7 @@ const AppContent = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/results" element={<SearchResults />} />
+          <Route path="/tours/:id" element={<TourDetails />} />
         </Routes>
       </main>
       <Footer />

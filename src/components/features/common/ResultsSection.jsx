@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plane, Compass, Globe2, MapPin, ShieldCheck, ArrowRightLeft, Search } from 'lucide-react';
 
 const ResultsSection = ({ results, activeTab }) => {
+  const navigate = useNavigate();
   return (
     <AnimatePresence>
       {results.length > 0 && (
@@ -72,14 +74,22 @@ const ResultsSection = ({ results, activeTab }) => {
                           Top Pick
                         </div>
                       )}
-                      <div className="w-full md:w-80 h-48 md:h-auto overflow-hidden relative">
+                      <div 
+                        onClick={() => navigate(`/tours/${r.id}`)}
+                        className="w-full md:w-80 h-48 md:h-auto overflow-hidden relative cursor-pointer"
+                      >
                         <img src={r.img} alt={r.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         {r.type === 'tour_custom' && <div className="absolute inset-0 bg-gradient-to-t from-brand-red/60 via-transparent to-transparent mix-blend-multiply" />}
                       </div>
                       <div className="p-8 flex-1 flex flex-col relative z-10 bg-white">
                         <div className="flex justify-between items-start mb-2">
                           <div>
-                            <h3 className={`text-2xl font-extrabold mb-2 ${r.type === 'tour_custom' ? 'text-brand-red' : 'text-brand-black'}`}>{r.name}</h3>
+                            <h3 
+                              onClick={() => navigate(`/tours/${r.id}`)}
+                              className={`text-2xl font-extrabold mb-2 cursor-pointer hover:underline ${r.type === 'tour_custom' ? 'text-brand-red' : 'text-brand-black'}`}
+                            >
+                              {r.name}
+                            </h3>
                             <div className="flex items-center gap-4 text-brand-black/40 font-bold text-sm">
                               <span className="flex items-center gap-1.5"><Compass size={16} /> {r.duration}</span>
                               <span className="flex items-center gap-1.5 font-bold"><Globe2 size={16} /> ⭐ {r.rating}</span>
@@ -92,7 +102,10 @@ const ResultsSection = ({ results, activeTab }) => {
                             <div className="text-[11px] font-bold text-brand-black/40 uppercase tracking-wider mb-1">Package Price</div>
                             <div className={`font-black ${r.type === 'tour_custom' ? 'text-brand-red text-2xl tracking-tight' : 'text-brand-black text-3xl'}`}>{r.type === 'tour_custom' ? r.price : `₹${r.price}`}</div>
                           </div>
-                          <button className={`px-8 h-14 rounded-xl font-bold transition-all hover:bg-brand-black active:scale-95 flex items-center gap-2 border ${r.type === 'tour_custom' ? 'bg-brand-red text-white hover:text-white border-transparent shadow-md' : 'bg-transparent border-brand-black/20 text-brand-black hover:border-brand-black'}`}>
+                          <button 
+                            onClick={() => navigate(`/tours/${r.id}`)}
+                            className={`px-8 h-14 rounded-xl font-bold transition-all hover:bg-brand-black active:scale-95 flex items-center gap-2 border ${r.type === 'tour_custom' ? 'bg-brand-red text-white hover:text-white border-transparent shadow-md' : 'bg-transparent border-brand-black/20 text-brand-black hover:border-brand-black'}`}
+                          >
                             {r.type === 'tour_custom' ? 'Start Customizing' : 'Book Tour Now'}
                           </button>
                         </div>
