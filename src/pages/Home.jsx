@@ -1,3 +1,12 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * The main landing page of the app. Renders the Hero section with
+ * the tabbed search card (flights, tours, visa, etc.), a feature
+ * highlights strip, and the HomeContent sections below the fold.
+ */
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
@@ -14,6 +23,7 @@ import TrainSearch from '../components/features/train/TrainSearch';
 import PnrSearch from '../components/features/pnr/PnrSearch';
 import HomeContent from '../components/features/common/HomeContent';
 
+// Each tab entry defines its ID, display label, icon, and which search component to render
 const tabs = [
   { id: 'flights', label: 'Flights', icon: Plane, Component: FlightSearch },
   { id: 'tours', label: 'Tours', icon: Compass, Component: TourSearch },
@@ -23,16 +33,22 @@ const tabs = [
   { id: 'pnr', label: 'PNR Status', icon: ClipboardCheck, Component: PnrSearch },
 ];
 
+// Trust signals displayed in the strip between the hero and the main content
 const features = [
   { icon: ShieldCheck, title: 'Transparent Pricing', text: 'No hidden fees or charges' },
   { icon: Headphones, title: '24/7 Expert Support', text: 'Always here for you' },
   { icon: Globe2, title: 'Global Network', text: 'Partners in 150+ countries' }
 ];
 
+/**
+ * Home page component. Renders the hero section with the full search card,
+ * the feature trust strip, and the HomeContent sections below.
+ */
 const Home = () => {
   const searchState = useSearchContext();
   const { activeTab, setActiveTab, results, searching, searchError, setSearchError } = searchState;
   
+  // Find the search form component that matches the currently active tab
   const ActiveComponent = tabs.find(t => t.id === activeTab)?.Component;
 
   return (

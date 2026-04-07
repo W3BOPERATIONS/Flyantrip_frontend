@@ -1,6 +1,29 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Visa assistance search form. Lets the user select a destination
+ * country and visa type, then submit for expert help.
+ * The country list is shown in a custom animated dropdown,
+ * while visa type uses a native <select> element.
+ */
+
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Globe2, ChevronDown } from 'lucide-react';
+
+/**
+ * Visa search form component.
+ *
+ * @param visaCountry      - Currently selected destination country
+ * @param setVisaCountry   - Updates the selected country
+ * @param visaDestinations - List of available visa destinations
+ * @param visaType         - Currently selected visa type
+ * @param setVisaType      - Updates the selected visa type
+ * @param showVisaMenu     - Whether the country dropdown is open
+ * @param setShowVisaMenu  - Opens/closes the country dropdown
+ * @param handleSearch     - Submits the visa assistance request
+ */
 
 const VisaSearch = ({ 
   visaCountry, setVisaCountry, visaDestinations, 

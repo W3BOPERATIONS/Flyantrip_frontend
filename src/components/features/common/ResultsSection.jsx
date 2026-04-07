@@ -1,8 +1,27 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Renders the list of search result cards on the results page.
+ * Handles four different card layouts depending on the result type:
+ * - 'flight'       → Flight card with airline, times, price
+ * - 'tour'         → Tour package card with image and rating
+ * - 'activity'     → Activity card with image, city, and price
+ * - 'status/info'  → Simple status card (used for train, PNR, visa)
+ */
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plane, Compass, Globe2, MapPin, ShieldCheck, ArrowRightLeft, Search } from 'lucide-react';
 
+/**
+ * Displays all search results as an animated, scrollable list.
+ * Each result is rendered with a different card layout based on its type.
+ *
+ * @param results   - Array of result objects returned from the search
+ * @param activeTab - The current search tab (e.g. 'flights', 'tours')
+ */
 const ResultsSection = ({ results, activeTab }) => {
   const navigate = useNavigate();
   return (

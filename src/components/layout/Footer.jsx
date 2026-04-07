@@ -1,3 +1,12 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Site-wide footer displayed at the bottom of every page.
+ * Contains the brand logo, tagline, social media icons, and
+ * three link columns: Company, Services, and Support.
+ */
+
 import React from 'react';
 import { Globe2, Instagram } from 'lucide-react';
 

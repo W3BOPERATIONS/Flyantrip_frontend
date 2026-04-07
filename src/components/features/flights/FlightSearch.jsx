@@ -1,8 +1,51 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Flight search form component. Lets the user pick:
+ * - Trip type (one-way or round trip)
+ * - Departure and destination airports (with live search dropdown)
+ * - Travel date(s) using a date picker
+ * - Number of travelers and cabin class
+ * All state is managed externally and passed in as props.
+ */
+
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plane, Search, ArrowRightLeft, ChevronDown } from 'lucide-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
+/**
+ * Full flight search form.
+ * Renders the FROM/TO airport pickers, date picker, traveler selector,
+ * and the main Search button.
+ *
+ * @param tripType           - 'round' or 'one' (trip mode)
+ * @param setTripType        - Updates the trip type
+ * @param from               - Selected departure airport object
+ * @param to                 - Selected destination airport object
+ * @param departureDate      - Selected date for one-way trips
+ * @param setDepartureDate   - Updates the departure date
+ * @param dateRange          - [startDate, endDate] for round trips
+ * @param setDateRange       - Updates the date range
+ * @param adults             - Number of adult travelers
+ * @param children           - Number of child travelers
+ * @param infants            - Number of infant travelers
+ * @param travelClass        - Selected cabin class (e.g. 'Economy')
+ * @param searching          - True while a search is in progress
+ * @param handleSearch       - Runs the search when the button is clicked
+ * @param showFromMenu       - Whether the FROM airport dropdown is open
+ * @param setShowFromMenu    - Opens/closes the FROM dropdown
+ * @param showToMenu         - Whether the TO airport dropdown is open
+ * @param setShowToMenu      - Opens/closes the TO dropdown
+ * @param showTravelersMenu  - Whether the traveler picker panel is open
+ * @param setShowTravelersMenu - Opens/closes the traveler panel
+ * @param filteredAirports   - List of airports matching the user's search query
+ * @param handleAirportSearch - Filters airports as the user types
+ * @param selectAirport      - Sets the chosen airport for FROM or TO
+ * @param swapAirports       - Swaps the FROM and TO airports
+ */
 
 const FlightSearch = ({ 
   tripType, setTripType, from, setFrom, to, setTo, 
@@ -13,6 +56,7 @@ const FlightSearch = ({
   showTravelersMenu, setShowTravelersMenu, filteredAirports, 
   handleAirportSearch, selectAirport, swapAirports 
 }) => {
+  // Destructure the date range array into named start and end dates
   const [startDate, endDate] = dateRange;
 
   return (
@@ -269,6 +313,7 @@ const FlightSearch = ({
                         disabled={infants <= 0}
                       >-</button>
                       <span className="w-4 text-center font-bold text-sm">{infants}</span>
+                      {/* Infants cannot exceed the number of adults (1 adult per infant) */}
                       <button
                         className="w-8 h-8 rounded-full border border-black/10 flex items-center justify-center font-bold text-brand-black hover:bg-black/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                         onClick={() => setInfants(infants + 1)}
@@ -316,7 +361,8 @@ const FlightSearch = ({
           onClick={handleSearch}
           disabled={searching}
         >
-          {searching ? <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1 }}>...</motion.div> : <><Search size={22} /> Search</>}
+          {/* Show a spinning indicator while searching, otherwise the Search icon + label */}
+        {searching ? <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1 }}>...</motion.div> : <><Search size={22} /> Search</>}
         </button>
       </div>
     </>

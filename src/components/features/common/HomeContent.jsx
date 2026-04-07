@@ -1,7 +1,25 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * The "below the fold" content shown on the home page.
+ * Contains three informational sections:
+ * 1. Trending Destinations — a visual grid of popular countries
+ * 2. Popular Activities    — curated activity cards with photos
+ * 3. Testimonials          — customer review cards
+ * 4. Partners Slider       — infinite auto-scrolling airline logo strip
+ */
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRightLeft, Search } from 'lucide-react';
 
+/**
+ * Renders all home page content sections below the hero search card.
+ *
+ * @param results   - Search results from the last query (currently unused here)
+ * @param searching - Whether a search is currently in progress (currently unused here)
+ */
 const HomeContent = ({ results, searching }) => {
 
   return (

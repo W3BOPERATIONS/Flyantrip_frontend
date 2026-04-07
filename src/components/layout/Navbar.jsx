@@ -1,14 +1,40 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Sticky top navigation bar. On the home page, the search tab buttons
+ * are hidden while the search card is in view, then smoothly slide in
+ * once the user scrolls past it. On all other pages, tabs are always shown.
+ */
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard, UserCircle2 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
+// All tab identifiers used across the app
 const TABS = ['flights', 'tours', 'visa', 'activity', 'train', 'pnr'];
 
+/**
+ * Converts a tab ID into a display-friendly label.
+ * "pnr" is kept as "Pnr" instead of being fully uppercased.
+ *
+ * @param tab - The tab ID string (e.g. 'flights', 'pnr')
+ * @returns A formatted label string (e.g. 'Flights', 'Pnr')
+ */
 const tabLabel = (tab) =>
   tab === 'pnr' ? 'Pnr' : tab.charAt(0).toUpperCase() + tab.slice(1);
 
+/**
+ * The main navigation bar component.
+ * Shows the logo, optional search tabs, and action buttons (bookings, account).
+ * Uses IntersectionObserver to detect when the hero search card scrolls out of view.
+ *
+ * @param activeTab    - The currently selected search tab ID
+ * @param setActiveTab - Function to change the active tab
+ */
 const Navbar = ({ activeTab, setActiveTab }) => {
+  // Controls whether the tab row is shown inside the navbar
   // true  → tabs are visible in navbar
   // false → tabs are hidden (search card tabs are visible on screen)
   const [showNavTabs, setShowNavTabs] = useState(false);
@@ -22,13 +48,14 @@ const Navbar = ({ activeTab, setActiveTab }) => {
       return;
     }
 
-    // On home page, watch the search-card tabs sentinel
+    // On home page, watch the search-card tabs sentinel element
     const sentinel = document.getElementById('search-tabs');
     if (!sentinel) {
       setShowNavTabs(false);
       return;
     }
 
+    // IntersectionObserver watches if the sentinel is visible on screen
     const observer = new IntersectionObserver(
       ([entry]) => {
         // When sentinel is NOT intersecting → it has scrolled out of view → show nav tabs
@@ -44,6 +71,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
     );
 
     observer.observe(sentinel);
+    // Clean up the observer when the component unmounts or route changes
     return () => observer.disconnect();
   }, [isHome, location.pathname]);
 
@@ -51,14 +79,14 @@ const Navbar = ({ activeTab, setActiveTab }) => {
     <nav className="sticky top-0 z-[1000] h-[64px] flex items-stretch bg-white/80 backdrop-blur-xl border-b border-black/5 shadow-sm">
       <div className="max-w-[1200px] w-full mx-auto px-6 flex justify-between items-stretch h-full">
         <div className="flex items-stretch gap-8">
-          {/* Logo */}
+          {/* Logo — clicking it always goes back to the home page */}
           <div className="flex items-center">
             <Link to="/">
               <img src="/logos/logo.png" alt="FlyAnyTrip" className="h-10 w-auto cursor-pointer" />
             </Link>
           </div>
 
-          {/* Nav Tabs — animated in/out */}
+          {/* Nav Tabs — animated in/out based on scroll position */}
           <AnimatePresence>
             {showNavTabs && (
               <motion.div
@@ -80,6 +108,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                     onClick={(e) => { e.preventDefault(); setActiveTab(tab); }}
                   >
                     {tabLabel(tab)}
+                    {/* Animated underline under the active tab */}
                     {activeTab === tab && (
                       <motion.div
                         layoutId="nav-underline"
@@ -94,7 +123,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
           </AnimatePresence>
         </div>
 
-        {/* Right side actions */}
+        {/* Right side action buttons */}
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2 text-sm font-semibold cursor-pointer text-brand-black opacity-70 hover:opacity-100">
             <CreditCard size={18} /> My Bookings

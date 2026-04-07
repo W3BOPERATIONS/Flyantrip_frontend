@@ -1,5 +1,21 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Train status search form. Accepts a train number or name from the user
+ * and triggers a live status check when the button is clicked.
+ */
+
 import React from 'react';
 import { Train, Activity } from 'lucide-react';
+
+/**
+ * Simple train status form with a text input and submit button.
+ *
+ * @param trainNumber    - The current value of the train number input
+ * @param setTrainNumber - Updates the train number as the user types
+ * @param handleSearch   - Runs the status lookup when the button is clicked
+ */
 
 const TrainSearch = ({ trainNumber, setTrainNumber, handleSearch }) => (
   <div className="grid grid-cols-[3fr_1fr] gap-4 items-end">

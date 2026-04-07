@@ -1,5 +1,21 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * PNR status check form. Accepts a 10-digit PNR number from the user
+ * and triggers a status lookup when the button is clicked.
+ */
+
 import React from 'react';
 import { Search, ClipboardCheck } from 'lucide-react';
+
+/**
+ * Simple PNR search form with a text input and submit button.
+ *
+ * @param pnrNumber    - The current value of the PNR input field
+ * @param setPnrNumber - Updates the PNR number as the user types
+ * @param handleSearch - Runs the lookup when the button is clicked
+ */
 
 const PnrSearch = ({ pnrNumber, setPnrNumber, handleSearch }) => (
   <div className="grid grid-cols-[3fr_1fr] gap-4 items-end">

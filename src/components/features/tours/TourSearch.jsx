@@ -1,7 +1,19 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Tour destination search component.
+ * Features a text input with a dropdown panel that shows:
+ * - Recent search history (as removable pill tags)
+ * - A photo grid of recommended destinations
+ * Closes automatically when the user clicks outside the dropdown.
+ */
+
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, MapPin, X, Clock } from 'lucide-react';
 
+// Maps destination names to their preview images shown in the dropdown grid
 const DEST_IMAGES = {
   Thailand:  'https://images.unsplash.com/photo-1528181304800-259b08bb73d5?q=80&w=600&auto=format&fit=crop',
   Vietnam:   'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=600&auto=format&fit=crop',
@@ -12,6 +24,16 @@ const DEST_IMAGES = {
   Bali:      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=600&auto=format&fit=crop',
 };
 
+/**
+ * Tour destination search component.
+ *
+ * @param tourDest            - The currently selected destination name
+ * @param setTourDest         - Updates the selected destination
+ * @param tourDestinations    - Full list of available tour destinations
+ * @param showTourMenu        - Whether the destination dropdown is open
+ * @param setShowTourMenu     - Opens/closes the dropdown
+ * @param handleSearch        - Runs the search when the button is clicked
+ */
 const TourSearch = ({
   tourDest, setTourDest, tourDestinations,
   showTourMenu, setShowTourMenu,
@@ -42,6 +64,12 @@ const TourSearch = ({
     return () => document.removeEventListener('mousedown', handler);
   }, [setShowTourMenu]);
 
+  /**
+   * Selects a destination and updates both the state and the input text.
+   * Also adds the choice to the search history (up to 5 recent items).
+   *
+   * @param dest - The destination name the user clicked on
+   */
   const selectDest = (dest) => {
     setTourDest(dest);
     setQuery(dest);
@@ -49,11 +77,22 @@ const TourSearch = ({
     if (!history.includes(dest)) setHistory(prev => [dest, ...prev].slice(0, 5));
   };
 
+  /**
+   * Removes a specific destination from the recent search history.
+   * Stops event propagation so the dropdown doesn't accidentally select it.
+   *
+   * @param dest - The destination to remove from history
+   * @param e    - The click event (used to stop bubbling)
+   */
   const removeHistory = (dest, e) => {
     e.stopPropagation();
     setHistory(prev => prev.filter(h => h !== dest));
   };
 
+  /**
+   * Opens the tour destination dropdown and closes all other open dropdowns.
+   * Guards with && checks because not all menus are always provided as props.
+   */
   const openMenu = () => {
     setShowTourMenu(true);
     setShowFromMenu && setShowFromMenu(false);

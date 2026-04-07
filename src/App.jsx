@@ -1,3 +1,11 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Root component of the app. Sets up the router, global search state,
+ * and the main page layout (Navbar, page content, Footer).
+ */
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -12,6 +20,10 @@ import {
   ShieldCheck, Headphones, Globe2
 } from 'lucide-react';
 
+/**
+ * Inner layout component. Reads the active search tab from context
+ * and renders the Navbar, the correct page, and the Footer.
+ */
 const AppContent = () => {
   const { activeTab, setActiveTab } = useSearchContext();
 
@@ -19,6 +31,7 @@ const AppContent = () => {
     <div className="min-h-screen bg-white">
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
       <main>
+        {/* Define all page routes here */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/results" element={<SearchResults />} />
@@ -30,6 +43,11 @@ const AppContent = () => {
   );
 };
 
+/**
+ * Top-level App component.
+ * Wraps everything in the Router (for navigation) and SearchProvider
+ * (so all child components can access shared search state).
+ */
 function App() {
   return (
     <Router>

@@ -1,3 +1,12 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Search results page shown after the user submits a search.
+ * Displays the relevant search form in condensed mode at the top
+ * so the user can modify their query, then lists the actual results below.
+ */
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSearchContext } from '../context/SearchContext';
@@ -10,6 +19,7 @@ import TrainSearch from '../components/features/train/TrainSearch';
 import PnrSearch from '../components/features/pnr/PnrSearch';
 import { ArrowLeft } from 'lucide-react';
 
+// Maps each tab ID to the search form component shown in modified-search mode
 const SearchComponents = {
   flights: FlightSearch,
   tours: TourSearch,
@@ -19,11 +29,16 @@ const SearchComponents = {
   pnr: PnrSearch
 };
 
+/**
+ * Results page component. Reads the current search state from context
+ * and renders the matching search form (condensed) and result cards.
+ */
 const SearchResults = () => {
   const searchState = useSearchContext();
   const { results, activeTab, searchError } = searchState;
   const navigate = useNavigate();
   
+  // Pick the right search form for whichever tab is currently active
   const ActiveSearch = SearchComponents[activeTab];
 
   return (

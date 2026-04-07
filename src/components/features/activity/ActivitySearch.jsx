@@ -1,7 +1,19 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Activity search component. Lets users search for things to do
+ * in a specific city. Features a text input with a dropdown that shows:
+ * - Recent search history (as removable pill tags)
+ * - A photo grid of recommended activity destinations
+ * Closes automatically when the user clicks outside the panel.
+ */
+
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, MapPin, X, Clock } from 'lucide-react';
 
+// Maps city names to their preview images shown in the dropdown grid
 const DEST_IMAGES = {
   Thailand:    'https://images.unsplash.com/photo-1528181304800-259b08bb73d5?q=80&w=600&auto=format&fit=crop',
   Vietnam:     'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=600&auto=format&fit=crop',
@@ -12,6 +24,16 @@ const DEST_IMAGES = {
   Bali:        'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=600&auto=format&fit=crop',
 };
 
+/**
+ * Activity destination search component.
+ *
+ * @param activityCity           - The currently selected city for activities
+ * @param setActivityCity        - Updates the selected city
+ * @param activityDestinations   - Full list of available activity cities
+ * @param showActivityMenu       - Whether the dropdown panel is open
+ * @param setShowActivityMenu    - Opens/closes the dropdown
+ * @param handleSearch           - Runs the search when the button is clicked
+ */
 const ActivitySearch = ({
   activityCity, setActivityCity, activityDestinations,
   showActivityMenu, setShowActivityMenu,
@@ -41,6 +63,12 @@ const ActivitySearch = ({
     return () => document.removeEventListener('mousedown', handler);
   }, [setShowActivityMenu]);
 
+  /**
+   * Selects a city and updates both the state and the input text.
+   * Also adds it to the search history (max 5 recent items).
+   *
+   * @param dest - The city name the user clicked on
+   */
   const selectDest = (dest) => {
     setActivityCity(dest);
     setQuery(dest);
@@ -48,11 +76,22 @@ const ActivitySearch = ({
     if (!history.includes(dest)) setHistory(prev => [dest, ...prev].slice(0, 5));
   };
 
+  /**
+   * Removes a city from the recent search history.
+   * Stops event propagation so clicking X doesn't also select the destination.
+   *
+   * @param dest - The city to remove
+   * @param e    - The click event
+   */
   const removeHistory = (dest, e) => {
     e.stopPropagation();
     setHistory(prev => prev.filter(h => h !== dest));
   };
 
+  /**
+   * Opens this dropdown and closes all other open dropdowns.
+   * Ensures only one dropdown is visible at a time.
+   */
   const openMenu = () => {
     setShowActivityMenu(true);
     setShowVisaMenu(false);

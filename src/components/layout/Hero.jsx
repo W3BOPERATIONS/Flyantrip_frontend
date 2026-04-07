@@ -1,6 +1,23 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Hero section displayed at the top of the home page.
+ * Shows a full-width background image with a dark overlay,
+ * an animated headline, and accepts children (the search card)
+ * rendered directly on top of the background.
+ */
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
+/**
+ * Full-width hero banner with a background photo and animated text.
+ * Any children passed in are rendered inside the hero background,
+ * which is how the flight search card is placed on the image.
+ *
+ * @param children - Content rendered inside the hero (e.g. the search card)
+ */
 const Hero = ({ children }) => (
   <section
     className="relative flex flex-col items-center px-6 bg-cover bg-center pb-16 pt-10"

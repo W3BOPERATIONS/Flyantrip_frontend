@@ -1,3 +1,12 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Custom hook that manages all shared search state for the app.
+ * This includes flight, tour, visa, activity, train, and PNR searches.
+ * It also handles fetching airport data and running mock searches.
+ */
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,8 +18,16 @@ import {
   allActivities 
 } from '../utils/mockData';
 
+/**
+ * Custom hook that holds all search-related state and actions.
+ * Used by SearchContext to share this data across the entire app.
+ *
+ * @returns An object with all state values, setters, and handler functions
+ */
 export const useSearchState = () => {
   const navigate = useNavigate();
+
+  // --- Flight search state ---
   const [activeTab, setActiveTab] = useState('flights');
   const [from, setFrom] = useState({ iata: 'DEL', name: 'Indira Gandhi International', city: 'New Delhi', country: 'India' });
   const [to, setTo] = useState({ iata: 'LHR', name: 'Heathrow', city: 'London', country: 'UK' });
@@ -29,7 +46,7 @@ export const useSearchState = () => {
   const [travelClass, setTravelClass] = useState('Economy');
   const [showTravelersMenu, setShowTravelersMenu] = useState(false);
 
-  // New States for other tabs
+  // --- Other tab states (tours, visa, activity, train, pnr) ---
   const [tourDest, setTourDest] = useState('');
   const [showTourMenu, setShowTourMenu] = useState(false);
   const [visaCountry, setVisaCountry] = useState('Thailand');
@@ -40,12 +57,18 @@ export const useSearchState = () => {
   const [trainNumber, setTrainNumber] = useState('');
   const [pnrNumber, setPnrNumber] = useState('');
 
+  // Holds any validation error message shown to the user
   const [searchError, setSearchError] = useState('');
 
+  // Fetch live airports from the backend when the app first loads
   useEffect(() => {
     fetchAirports();
   }, []);
 
+  /**
+   * Tries to load airport data from the backend API.
+   * If the backend is offline, the mock data loaded above is used instead.
+   */
   const fetchAirports = async () => {
     try {
       const res = await axios.get('http://localhost:5001/api/airports');
@@ -58,6 +81,12 @@ export const useSearchState = () => {
     }
   };
 
+  /**
+   * Filters the airports list based on the user's typed query.
+   * Matches against IATA code, airport name, city, and country.
+   *
+   * @param query - The text the user typed in the airport search box
+   */
   const handleAirportSearch = (query) => {
     const q = query.toLowerCase();
     const filtered = airports.filter(a =>
@@ -69,6 +98,13 @@ export const useSearchState = () => {
     setFilteredAirports(filtered);
   };
 
+  /**
+   * Sets the selected airport for either the "from" or "to" field
+   * and closes the corresponding dropdown menu.
+   *
+   * @param type    - Either 'from' or 'to'
+   * @param airport - The airport object the user clicked on
+   */
   const selectAirport = (type, airport) => {
     if (type === 'from') { 
       setFrom(airport); 
@@ -79,16 +115,26 @@ export const useSearchState = () => {
     }
   };
 
+  /**
+   * Swaps the "from" and "to" airports with each other.
+   * Uses a temporary variable to avoid overwriting one before the other is saved.
+   */
   const swapAirports = () => {
     const temp = from;
     setFrom(to);
     setTo(temp);
   };
 
+  /**
+   * Validates the search inputs for the currently active tab,
+   * then simulates a search with mock data after a short delay.
+   * Navigates to the results page when complete.
+   */
   const handleSearch = () => {
     setSearchError('');
     let isValid = true;
 
+    // Validate required fields depending on which tab is active
     if (activeTab === 'flights') {
       if (!from || !to) isValid = false;
       if (tripType === 'round' && (!dateRange[0] || !dateRange[1])) isValid = false;
@@ -105,6 +151,7 @@ export const useSearchState = () => {
       if (!pnrNumber || pnrNumber.trim() === '') isValid = false;
     }
 
+    // Show an error and stop if any required field is missing
     if (!isValid) {
       setSearchError("Fill all the details first");
       return;
@@ -113,6 +160,7 @@ export const useSearchState = () => {
     setSearching(true);
     setResults([]);
 
+    // Simulate a network delay of 1.2 seconds before showing mock results
     setTimeout(() => {
       let mockResults = [];
       if (activeTab === 'flights') {
@@ -135,6 +183,7 @@ export const useSearchState = () => {
       } else if (activeTab === 'pnr') {
         mockResults = [{ id: 1, type: 'status', title: 'PNR Status: Confirmed', desc: `PNR ${pnrNumber} - Seat S4, 22. Passenger: Gaurav Thakur.` }];
       } else if (activeTab === 'activity') {
+        // Filter real activity data by the chosen city
         mockResults = allActivities.filter(activity => activity.city === activityCity);
       }
       setResults(mockResults);
@@ -143,6 +192,7 @@ export const useSearchState = () => {
     }, 1200);
   };
 
+  // Return all state values and handler functions for use throughout the app
   return {
     activeTab, setActiveTab,
     from, setFrom,

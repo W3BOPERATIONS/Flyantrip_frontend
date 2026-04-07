@@ -1,19 +1,36 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Detail page for a specific tour destination.
+ * Displays a three-image gallery, tour title with ratings, practical
+ * info (hours, address, phone), and a sticky booking card on the side.
+ * Uses mock data — the tour ID from the URL is passed in but the data
+ * is hardcoded as a placeholder until a real API is connected.
+ */
+
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
   Heart, Star, Info, MapPin, Phone, Clock, FileText, ChevronRight
 } from 'lucide-react';
 
+/**
+ * Displays the full detail view for a single tour.
+ * Scrolls to the top on load, then renders a photo gallery,
+ * details panel (ratings, tags, info), and a sticky booking card.
+ */
 const TourDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Scroll to top on mount
+  // Always scroll to the top when this page first loads
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Mock data specifically styled like "The Grand Palace" photo
+  // Mock tour data — hardcoded until a real API is wired up
+  // The `id` from the URL is stored but the content is the same for now
   const tour = {
     id: id || '1',
     title: 'The Grand Palace',
@@ -39,9 +56,9 @@ const TourDetails = () => {
       availability: 'Book now for tomorrow'
     },
     images: [
-      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=1600&h=1200', // Center wide
-      'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&q=80&w=600&h=800', // Left tall
-      'https://images.unsplash.com/photo-1590483252431-7bcbb3fc1069?auto=format&fit=crop&q=80&w=600&h=800'  // Right tall
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=1600&h=1200', // Wide center photo
+      'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&q=80&w=600&h=800', // Tall left photo
+      'https://images.unsplash.com/photo-1590483252431-7bcbb3fc1069?auto=format&fit=crop&q=80&w=600&h=800'  // Tall right photo
     ]
   };
 
