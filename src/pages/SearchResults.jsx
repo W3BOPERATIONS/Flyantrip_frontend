@@ -52,28 +52,7 @@ const SearchResults = () => {
             <button
               id="back-to-home-btn"
               onClick={() => navigate('/')}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '7px 16px',
-                fontSize: '14px',
-                fontWeight: '500',
-                color: '#e63946',
-                background: 'transparent',
-                border: '1.5px solid #e63946',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = '#e63946';
-                e.currentTarget.style.color = '#fff';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = '#e63946';
-              }}
+              className="inline-flex items-center gap-1.5 px-4 py-[7px] text-sm font-medium text-brand-red bg-transparent border-[1.5px] border-brand-red rounded-lg cursor-pointer transition-all hover:bg-brand-red hover:text-white"
             >
               <ArrowLeft size={16} />
               Back to Home

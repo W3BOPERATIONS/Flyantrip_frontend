@@ -3,22 +3,27 @@
  * Authors: Gaurav Thakur, Milan Pandavadara
  *
  * The "below the fold" content shown on the home page.
- * Contains three informational sections:
- * 1. Trending Destinations — a visual grid of popular countries
- * 2. Popular Activities    — curated activity cards with photos
+ * Contains informational sections:
+ * 1. Trending Destinations — visual grid of popular countries
+ * 2. Popular Activities    — curated activity cards with photographs
  * 3. Testimonials          — customer review cards
- * 4. Partners Slider       — infinite auto-scrolling airline logo strip
+ * 4. Stats Bar              — key performance metrics (Happy Customers, etc.)
+ * 5. Happy Customers       — detailed company features with images
+ * 6. Partners Slider       — infinite auto-scrolling airline logo strip
  */
 
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRightLeft, Search } from 'lucide-react';
+import HappyCustomers from './HappyCustomers';
 
 /**
  * Renders all home page content sections below the hero search card.
+ * Orchestrates the informational sections and the partnership slider.
  *
- * @param results   - Search results from the last query (currently unused here)
- * @param searching - Whether a search is currently in progress (currently unused here)
+ * @param results   - search results from the last query
+ * @param searching - whether a search is currently in progress
+ * @returns {JSX.Element} The rendered content blocks.
  */
 const HomeContent = ({ results, searching }) => {
 
@@ -117,7 +122,50 @@ const HomeContent = ({ results, searching }) => {
         </div>
       </section>
 
-      {/* Partners Section */}
+      {/* Stats Bar — shown between testimonials and the partners slider */}
+      <section className="py-12 bg-brand-black">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div
+            className="flex items-center justify-around rounded-3xl py-10 px-8"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255,220,220,0.12) 0%, rgba(200,200,255,0.10) 50%, rgba(180,180,255,0.08) 100%)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(12px)',
+            }}
+          >
+            {[
+              { value: '2.5K+', label: 'Happy Customers' },
+              { value: '350+',  label: 'Airlines' },
+              { value: '4.5K+', label: 'Destinations' },
+              { value: '24/7',  label: 'Support' },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-2 flex-1"
+                style={{
+                  borderLeft: i !== 0 ? '1px solid rgba(255,255,255,0.1)' : 'none',
+                }}
+              >
+                <span
+                  className="text-4xl font-black tracking-tight"
+                  style={{ color: '#f0f0f0', letterSpacing: '-0.02em' }}
+                >
+                  {stat.value}
+                </span>
+                <span className="text-[12px] font-bold uppercase tracking-widest text-white/40">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Happy Customers Section — converted from HTML to React */}
+      <HappyCustomers />
+
+      {/* Partners Section — Infinite Scrolling Airline Logos */}
+
       <section className="py-24 bg-[#FBFBFB] border-y border-black/5 overflow-hidden">
         <div className="max-w-[1200px] mx-auto px-6 mb-12">
           <div className="flex flex-col items-center text-center gap-3">

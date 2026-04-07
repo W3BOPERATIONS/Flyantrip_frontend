@@ -1,3 +1,12 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * Core stylesheet for the application.
+ * Defines Tailwind directives, font imports, and global design tokens
+ * for the "Holographic Travel" aesthetic (glassmorphism/premium).
+ */
+
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap');
 
 @tailwind base;

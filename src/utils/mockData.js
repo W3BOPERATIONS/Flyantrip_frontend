@@ -1,3 +1,15 @@
+/*
+ * Flyanytrip
+ * Authors: Gaurav Thakur, Milan Pandavadara
+ *
+ * This file contains centralized mock data for the application.
+ * It includes lists of airports, destinations, activities, and testimonials
+ * used for development and demonstration purposes.
+ */
+
+/**
+ * List of international and domestic airports with IATA codes.
+ */
 export const airports = [
   // India
   { iata: 'DEL', name: 'Indira Gandhi International', city: 'New Delhi', country: 'India' },
