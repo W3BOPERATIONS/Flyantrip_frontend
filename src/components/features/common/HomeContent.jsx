@@ -85,6 +85,53 @@ const HomeContent = ({ results, searching }) => {
         </div>
       </section>
 
+      {/* Stats Bar — moved outside testimonials for better visual separation */}
+      <section className="py-24 bg-white relative">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div
+            className="flex items-center justify-around rounded-[48px] py-16 px-8 border border-white/60 relative group"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.92) 100%)',
+              backdropFilter: 'blur(40px) saturate(2)',
+              WebkitBackdropFilter: 'blur(40px) saturate(2)',
+              boxShadow: '-32px 48px 80px -16px rgba(255, 51, 51, 0.18), inset 0 2px 4px rgba(255, 255, 255, 0.8), inset 0 -2px 4px rgba(0, 0, 0, 0.02)',
+            }}
+          >
+            {/* Subtle Surface Shine layer */}
+            <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+            
+            {[
+              { value: '2.5K+', label: 'Happy Customers' },
+              { value: '350+',  label: 'Airlines' },
+              { value: '4.5K+', label: 'Destinations' },
+              { value: '24/7',  label: 'Support' },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-2 flex-1 group/stat relative z-10"
+                style={{
+                  borderLeft: i !== 0 ? '1px solid rgba(0,0,0,0.03)' : 'none',
+                }}
+              >
+                <span
+                  className="text-4xl font-black tracking-tight transition-all group-hover/stat:scale-110 duration-500"
+                  style={{ 
+                    color: '#1a1a1a', 
+                    letterSpacing: '-0.02em',
+                    filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.08))'
+                  }}
+                >
+                  {stat.value}
+                </span>
+                <span className="text-[12px] font-bold uppercase tracking-[0.25em] text-brand-black/40 group-hover/stat:text-brand-red transition-all duration-300">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="py-24 bg-brand-black relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
@@ -116,45 +163,6 @@ const HomeContent = ({ results, searching }) => {
                     <div className="text-white/40 text-sm font-medium">{t.role}</div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Bar — shown between testimonials and the partners slider */}
-      <section className="py-12 bg-brand-black">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div
-            className="flex items-center justify-around rounded-3xl py-10 px-8"
-            style={{
-              background: 'linear-gradient(135deg, rgba(255,220,220,0.12) 0%, rgba(200,200,255,0.10) 50%, rgba(180,180,255,0.08) 100%)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              backdropFilter: 'blur(12px)',
-            }}
-          >
-            {[
-              { value: '2.5K+', label: 'Happy Customers' },
-              { value: '350+',  label: 'Airlines' },
-              { value: '4.5K+', label: 'Destinations' },
-              { value: '24/7',  label: 'Support' },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center gap-2 flex-1"
-                style={{
-                  borderLeft: i !== 0 ? '1px solid rgba(255,255,255,0.1)' : 'none',
-                }}
-              >
-                <span
-                  className="text-4xl font-black tracking-tight"
-                  style={{ color: '#f0f0f0', letterSpacing: '-0.02em' }}
-                >
-                  {stat.value}
-                </span>
-                <span className="text-[12px] font-bold uppercase tracking-widest text-white/40">
-                  {stat.label}
-                </span>
               </div>
             ))}
           </div>
