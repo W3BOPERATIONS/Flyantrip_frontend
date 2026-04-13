@@ -83,12 +83,12 @@ export const allActivities = [
   {
     id: 1, type: 'activity', name: 'Floating Market & Railway Track Tour', city: 'Thailand', price: '3,800', rating: 4.8, tag: 'Cultural Experience',
     desc: 'Visit the famous Maeklong Railway Market and Damnoen Saduak Floating Market.',
-    img: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/floating market.jpg'
   },
   {
     id: 8, type: 'activity', name: 'Phi Phi Islands Speedboat Tour', city: 'Thailand', price: '4,500', rating: 4.9, tag: 'Nature & Adventure',
     desc: 'Explore the stunning Maya Bay, Monkey Beach, and snorkel in crystal-clear waters.',
-    img: 'https://images.unsplash.com/photo-1528181304800-259b08bb73d5?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/phi phi islands.jpg'
   },
   // Vietnam
   {
@@ -99,7 +99,7 @@ export const allActivities = [
   {
     id: 9, type: 'activity', name: 'Cu Chi Tunnels Half-Day Tour', city: 'Vietnam', price: '1,800', rating: 4.7, tag: 'History',
     desc: 'Discover the vast underground network used during the Vietnam War.',
-    img: 'https://images.unsplash.com/photo-1559592413-7a912e75e9f1?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Cu Chi Tunnels.jpg'
   },
   // Dubai
   {
@@ -110,51 +110,51 @@ export const allActivities = [
   {
     id: 10, type: 'activity', name: 'Premium Red Dunes Camel Safari', city: 'Dubai', price: '4,500', rating: 4.8, tag: 'Adventure',
     desc: 'Experience dune bashing, camel riding, and a traditional BBQ dinner in the desert.',
-    img: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Premium Red Dunes Camel Safari.jpg'
   },
   // Vadodara
   {
     id: 4, type: 'activity', name: 'Laxmi Vilas Palace Heritage Tour', city: 'Vadodara', price: '1,200', rating: 4.9, tag: 'History',
     desc: 'Explore the grand architecture and royal history of the world\'s largest private residence.',
-    img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Laxmi Vilas Palace.jpg'
   },
   {
     id: 11, type: 'activity', name: 'Statue of Unity Day Trip', city: 'Vadodara', price: '2,500', rating: 4.9, tag: 'Culture & Sightseeing',
     desc: 'Visit the world\'s tallest statue dedicated to the Iron Man of India, Sardar Vallabhbhai Patel.',
-    img: 'https://images.unsplash.com/photo-1621217646197-29007c08bca0?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/SOUT.jpg'
   },
   // Singapore
   {
     id: 5, type: 'activity', name: 'Gardens by the Bay Entry Ticket', city: 'Singapore', price: '2,100', rating: 4.8, tag: 'Nature',
     desc: 'Wander through the futuristic Supertrees and the stunning Cloud Forest conservatory.',
-    img: 'https://images.unsplash.com/photo-1525625293386-3fb0ad7c1fe6?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Gardens by the Bay.jpg'
   },
   {
     id: 12, type: 'activity', name: 'Universal Studios Singapore', city: 'Singapore', price: '5,800', rating: 4.8, tag: 'Theme Park',
     desc: 'Experience cutting-edge rides, shows, and attractions based on your favorite blockbuster films.',
-    img: 'https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Universal Studios Singapore.jpg'
   },
   // Oman
   {
     id: 6, type: 'activity', name: 'Wadi Shab & Bimmah Sinkhole Tour', city: 'Oman', price: '6,200', rating: 4.8, tag: 'Adventure',
     desc: 'Hike through breathtaking wadis and swim in the emerald waters of Bimmah Sinkhole.',
-    img: 'https://images.unsplash.com/photo-1552554650-dc20ce13b632?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Wadi Shab & Bimmah Sinkhole Tour.jpg'
   },
   {
     id: 13, type: 'activity', name: 'Wahiba Sands Desert Safari', city: 'Oman', price: '7,500', rating: 4.9, tag: 'Adventure',
     desc: 'Explore the rolling sand dunes of Wahiba Sands followed by a dip in Wadi Bani Khalid.',
-    img: 'https://images.unsplash.com/photo-1551043047-1d2adf00f3fe?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Wahiba Sands Desert Safari.jpg'
   },
   // Bali
   {
     id: 7, type: 'activity', name: 'Ubud Monkey Forest & Swing', city: 'Bali', price: '2,800', rating: 4.7, tag: 'Culture & Nature',
     desc: 'Interact with macaques in lush forests and experience the iconic Bali jungle swing.',
-    img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Ubud Monkey Forest & Swing.jpg'
   },
   {
     id: 14, type: 'activity', name: 'Mount Batur Sunrise Trek', city: 'Bali', price: '3,500', rating: 4.8, tag: 'Adventure',
     desc: 'Hike an active volcano under the stars and witness a breathtaking sunrise from the summit.',
-    img: 'https://images.unsplash.com/photo-1512100256448-a550d1736000?q=80&w=1000&auto=format&fit=crop'
+    img: '/assets/activities/Mount Batur Sunrise Trek.jpg'
   }
 ];
 
@@ -167,10 +167,10 @@ export const trendingDestinations = [
 ];
 
 export const popularActivities = [
-  { name: 'Heritage Walk', city: 'Vadodara', price: '1,200', tag: 'Cultural', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=1000&auto=format&fit=crop' },
-  { name: 'Desert Safari', city: 'Dubai', price: '4,500', tag: 'Adventure', img: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?q=80&w=1000&auto=format&fit=crop' },
-  { name: 'Island Hopping', city: 'Thailand', price: '3,800', tag: 'Leisure', img: 'https://images.unsplash.com/photo-1528181304800-259b08bb73d5?q=80&w=1000&auto=format&fit=crop' },
-  { name: 'Skydeck Views', city: 'Singapore', price: '2,900', tag: 'Must Visit', img: 'https://images.unsplash.com/photo-1525625293386-3fb0ad7c1fe6?q=80&w=1000&auto=format&fit=crop' }
+  { name: 'Heritage Walk', city: 'Vadodara', price: '1,200', tag: 'Cultural', img: '/assets/activities/vadodara.png' },
+  { name: 'Desert Safari', city: 'Dubai', price: '4,500', tag: 'Adventure', img: '/assets/activities/dubai.png' },
+  { name: 'Island Hopping', city: 'Thailand', price: '3,800', tag: 'Leisure', img: '/assets/activities/island_hopping.png' },
+  { name: 'Skydeck Views', city: 'Singapore', price: '2,900', tag: 'Must Visit', img: '/assets/activities/skydeck.png' }
 ];
 
 export const testimonials = [
