@@ -97,7 +97,7 @@ const ResultsSection = ({ results, activeTab }) => {
                         onClick={() => navigate(`/tours/${r.id}`)}
                         className="w-full md:w-80 h-48 md:h-auto overflow-hidden relative cursor-pointer"
                       >
-                        <img src={r.img} alt={r.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <img src={r.img} alt={r.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/f8f9fa/a8a29e?text=Image+Unavailable'; }} />
                         {r.type === 'tour_custom' && <div className="absolute inset-0 bg-gradient-to-t from-brand-red/60 via-transparent to-transparent mix-blend-multiply" />}
                       </div>
                       <div className="p-8 flex-1 flex flex-col relative z-10 bg-white">
@@ -135,7 +135,7 @@ const ResultsSection = ({ results, activeTab }) => {
                   {r.type === 'activity' && (
                     <div className="flex bg-white rounded-3xl border border-black/5 overflow-hidden shadow-sm hover:shadow-xl transition-all h-[280px]">
                       <div className="w-1/3 h-full relative overflow-hidden group">
-                        <img src={r.img} alt={r.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <img src={r.img} alt={r.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/f8f9fa/a8a29e?text=Image+Unavailable'; }} />
                         <div className="absolute top-4 left-4">
                           <span className="bg-brand-red text-white text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-lg">
                             {r.tag}

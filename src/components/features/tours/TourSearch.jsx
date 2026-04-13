@@ -15,13 +15,13 @@ import { Search, MapPin, X, Clock } from 'lucide-react';
 
 // Maps destination names to their preview images shown in the dropdown grid
 const DEST_IMAGES = {
-  Thailand:  'https://images.unsplash.com/photo-1528181304800-259b08bb73d5?q=80&w=600&auto=format&fit=crop',
-  Vietnam:   'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=600&auto=format&fit=crop',
-  Dubai:     'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?q=80&w=600&auto=format&fit=crop',
-  Singapore: 'https://images.unsplash.com/photo-1525625293386-3fb0ad7c1fe6?q=80&w=600&auto=format&fit=crop',
-  India:     'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=600&auto=format&fit=crop',
-  Oman:      'https://images.unsplash.com/photo-1552554650-dc20ce13b632?q=80&w=600&auto=format&fit=crop',
-  Bali:      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=600&auto=format&fit=crop',
+  Thailand:  '/assets/destinations/thailand.png',
+  Vietnam:   '/assets/destinations/vietnam.png',
+  Dubai:     '/assets/activities/dubai.png',
+  Singapore: '/assets/destinations/singapore.png',
+  India:     '/assets/destinations/india.png',
+  Oman:      '/assets/destinations/oman.png',
+  Bali:      '/assets/destinations/bali.png',
 };
 
 /**
@@ -223,6 +223,7 @@ const TourSearch = ({
                         src={DEST_IMAGES[dest] || `https://source.unsplash.com/400x300/?${dest},travel`}
                         alt={dest}
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/f8f9fa/a8a29e?text=' + encodeURIComponent(dest); }}
                       />
                       <div style={{
                         position: 'absolute', inset: 0,

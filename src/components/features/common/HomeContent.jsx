@@ -36,14 +36,14 @@ const HomeContent = ({ results, searching }) => {
         </div>
         <div className="grid grid-cols-5 gap-6">
           {[
-            { name: 'Vietnam', price: '48,000', img: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1000&auto=format&fit=crop' },
-            { name: 'Bali', price: '42,500', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1000&auto=format&fit=crop' },
-            { name: 'Oman', price: '85,000', img: 'https://images.unsplash.com/photo-1616035287790-255d644781bb?q=80&w=1000&auto=format&fit=crop' },
-            { name: 'Thailand', price: '38,900', img: 'https://images.unsplash.com/photo-1523730205978-59fd1b2965e3?q=80&w=1000&auto=format&fit=crop' },
-            { name: 'Singapore', price: '52,000', img: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1000&auto=format&fit=crop' }
+            { name: 'Vietnam', price: '48,000', img: '/assets/destinations/vietnam.png' },
+            { name: 'Bali', price: '42,500', img: '/assets/destinations/bali.png' },
+            { name: 'Oman', price: '85,000', img: '/assets/destinations/oman.png' },
+            { name: 'Thailand', price: '38,900', img: '/assets/destinations/thailand.png' },
+            { name: 'Singapore', price: '52,000', img: '/assets/destinations/singapore.png' }
           ].map((dest) => (
             <div key={dest.name} className="relative h-[400px] rounded-3xl overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
-              <img src={dest.img} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <img src={dest.img} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/f8f9fa/a8a29e?text=Image+Unavailable'; }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-8 w-full transition-transform duration-500 group-hover:-translate-y-2">
                 <h3 className="text-2xl font-bold text-white mb-2">{dest.name}</h3>
@@ -62,13 +62,13 @@ const HomeContent = ({ results, searching }) => {
         </div>
         <div className="grid grid-cols-4 gap-6">
           {[
-            { name: 'Heritage Walk', city: 'Vadodara', price: '1,200', tag: 'Cultural', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=1000&auto=format&fit=crop' },
-            { name: 'Desert Safari', city: 'Dubai', price: '4,500', tag: 'Adventure', img: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?q=80&w=1000&auto=format&fit=crop' },
-            { name: 'Island Hopping', city: 'Thailand', price: '3,800', tag: 'Leisure', img: 'https://images.unsplash.com/photo-1528181304800-259b08bb73d5?q=80&w=1000&auto=format&fit=crop' },
-            { name: 'Skydeck Views', city: 'Singapore', price: '2,900', tag: 'Must Visit', img: 'https://images.unsplash.com/photo-1525625293386-3fb0ad7c1fe6?q=80&w=1000&auto=format&fit=crop' }
+            { name: 'Heritage Walk', city: 'Vadodara', price: '1,200', tag: 'Cultural', img: '/assets/activities/vadodara.png' },
+            { name: 'Desert Safari', city: 'Dubai', price: '4,500', tag: 'Adventure', img: '/assets/activities/dubai.png' },
+            { name: 'Island Hopping', city: 'Thailand', price: '3,800', tag: 'Leisure', img: '/assets/activities/island_hopping.png' },
+            { name: 'Skydeck Views', city: 'Singapore', price: '2,900', tag: 'Must Visit', img: '/assets/activities/skydeck.png' }
           ].map((act) => (
             <div key={act.name} className="relative h-[300px] rounded-[32px] overflow-hidden group cursor-pointer shadow-md hover:shadow-xl transition-all duration-500 bg-white">
-              <img src={act.img} alt={act.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <img src={act.img} alt={act.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/f8f9fa/a8a29e?text=Image+Unavailable'; }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               <div className="absolute top-4 left-4">
                 <span className="bg-white/90 backdrop-blur-md text-brand-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">{act.tag}</span>

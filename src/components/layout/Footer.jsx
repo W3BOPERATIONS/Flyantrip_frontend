@@ -15,7 +15,7 @@ const Footer = () => (
     <div className="max-w-[1200px] mx-auto px-6">
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-x-12 gap-y-6 mb-6 border-b border-white/5 pb-6">
         <div className="flex flex-col gap-6 items-start">
-          <img src="logos/logo.png" alt="FlyAnyTrip" className="h-8 w-auto object-contain max-w-[160px]" />
+          <img src="logos/logo.png" alt="FlyAnyTrip" className="h-8 w-auto object-contain max-w-[160px]" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/160x32/f8f9fa/a8a29e?text=FlyAnyTrip'; }} />
           <p className="text-white/40 text-sm max-w-xs leading-relaxed">Elevating global travel through professional precision and uncompromising luxury.</p>
           <div className="flex gap-3">
             <div className="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-white/40 hover:bg-brand-red/20 hover:text-brand-red transition-all cursor-pointer">

@@ -82,7 +82,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
           {/* Logo — clicking it always goes back to the home page */}
           <div className="flex items-center">
             <Link to="/">
-              <img src="/logos/logo.png" alt="FlyAnyTrip" className="h-10 w-auto cursor-pointer" />
+              <img src="/logos/logo.png" alt="FlyAnyTrip" className="h-10 w-auto cursor-pointer" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/160x40/f8f9fa/a8a29e?text=FlyAnyTrip'; }} />
             </Link>
           </div>
 

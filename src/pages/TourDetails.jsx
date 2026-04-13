@@ -56,9 +56,9 @@ const TourDetails = () => {
       availability: 'Book now for tomorrow'
     },
     images: [
-      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=1600&h=1200', // Wide center photo
-      'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&q=80&w=600&h=800', // Tall left photo
-      'https://images.unsplash.com/photo-1590483252431-7bcbb3fc1069?auto=format&fit=crop&q=80&w=600&h=800'  // Tall right photo
+      '/assets/tours/grand_palace_center.png', // Wide center photo
+      '/assets/tours/grand_palace_left.png', // Tall left photo
+      '/assets/tours/grand_palace_right.png'  // Tall right photo
     ]
   };
 
@@ -74,13 +74,13 @@ const TourDetails = () => {
         {/* Image Gallery Grid */}
         <div className="grid grid-cols-4 gap-1 h-[400px] mb-8 rounded-xl overflow-hidden shadow-sm bg-white">
           <div className="col-span-1 h-full">
-            <img src={tour.images[1]} alt="Gallery left" className="w-full h-full object-cover hover:opacity-95 transition-opacity cursor-pointer" />
+            <img src={tour.images[1]} alt="Gallery left" className="w-full h-full object-cover hover:opacity-95 transition-opacity cursor-pointer" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x800/f8f9fa/a8a29e?text=Image+Unavailable'; }} />
           </div>
           <div className="col-span-2 h-full">
-            <img src={tour.images[0]} alt="Gallery main" className="w-full h-full object-cover hover:opacity-95 transition-opacity cursor-pointer" />
+            <img src={tour.images[0]} alt="Gallery main" className="w-full h-full object-cover hover:opacity-95 transition-opacity cursor-pointer" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1600x1200/f8f9fa/a8a29e?text=Image+Unavailable'; }} />
           </div>
           <div className="col-span-1 h-full relative group">
-            <img src={tour.images[2]} alt="Gallery right" className="w-full h-full object-cover hover:opacity-95 transition-opacity cursor-pointer" />
+            <img src={tour.images[2]} alt="Gallery right" className="w-full h-full object-cover hover:opacity-95 transition-opacity cursor-pointer" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x800/f8f9fa/a8a29e?text=Image+Unavailable'; }} />
             <button className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-lg flex items-center gap-1 hover:bg-black/80 transition-colors">
               See more <ChevronRight size={16} />
             </button>

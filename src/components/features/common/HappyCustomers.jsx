@@ -112,6 +112,7 @@ const HappyCustomers = () => {
                       src={`/assets/customer/${img}`} 
                       alt={`Customer ${index + i + 1}`} 
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x800/f8f9fa/a8a29e?text=Customer'; }}
                     />
                   </motion.div>
                 ))}
