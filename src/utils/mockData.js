@@ -83,78 +83,106 @@ export const allActivities = [
   {
     id: 1, type: 'activity', name: 'Floating Market & Railway Track Tour', city: 'Thailand', price: '3,800', rating: 4.8, tag: 'Cultural Experience',
     desc: 'Visit the famous Maeklong Railway Market and Damnoen Saduak Floating Market.',
-    img: '/assets/activities/floating market.jpg'
+    longDesc: 'Experience the vibrant colors and daily life of Thailand with this immersive tour. Start at the Maeklong Railway Market, where vendors incredibly pull back their stalls as trains pass through. Then, navigate the maze-like canals of Damnoen Saduak Floating Market on a traditional longtail boat, sampling local fruits and street food right from the water.',
+    img: '/assets/activities/floating market.jpg',
+    gallery: ['/assets/activities/floating market.jpg', 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a', 'https://images.unsplash.com/photo-1540333674149-6234f9640822']
   },
   {
     id: 8, type: 'activity', name: 'Phi Phi Islands Speedboat Tour', city: 'Thailand', price: '4,500', rating: 4.9, tag: 'Nature & Adventure',
     desc: 'Explore the stunning Maya Bay, Monkey Beach, and snorkel in crystal-clear waters.',
-    img: '/assets/activities/phi phi islands.jpg'
+    longDesc: 'Discover the natural paradise of the Phi Phi Islands. This speedboat tour takes you to the iconic Maya Bay (made famous by "The Beach"), the playful Monkey Beach, and turquoise lagoons perfect for snorkeling. Witness dramatic limestone cliffs rising from the sea and enjoy a premium lunch on the sand.',
+    img: '/assets/activities/phi phi islands.jpg',
+    gallery: ['/assets/activities/phi phi islands.jpg', 'https://images.unsplash.com/photo-1528181304800-259b08bb73d5', 'https://images.unsplash.com/photo-1537996194471-e657df975ab4']
   },
   // Vietnam
   {
     id: 2, type: 'activity', name: 'Ha Long Bay Luxury Day Cruise', city: 'Vietnam', price: '5,500', rating: 4.9, tag: 'Nature & Adventure',
     desc: 'Sail through the iconic limestone karsts of Ha Long Bay with a seafood lunch included.',
-    img: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1000&auto=format&fit=crop'
+    longDesc: 'A UNESCO World Heritage site, Ha Long Bay is a must-see. This luxury day cruise features a journey through thousands of emerald-green islands and towering limestone pillars. Explore hidden caves, enjoy a multi-course seafood lunch on deck, and kayak through the serene waters of this geological marvel.',
+    img: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1000&auto=format&fit=crop',
+    gallery: ['https://images.unsplash.com/photo-1528127269322-539801943592', 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a', 'https://images.unsplash.com/photo-1506744038136-46273834b3fb']
   },
   {
     id: 9, type: 'activity', name: 'Cu Chi Tunnels Half-Day Tour', city: 'Vietnam', price: '1,800', rating: 4.7, tag: 'History',
     desc: 'Discover the vast underground network used during the Vietnam War.',
-    img: '/assets/activities/Cu Chi Tunnels.jpg'
+    longDesc: 'Step into history at the Cu Chi Tunnels. Explore the 250km network of narrow underground passageways that played a strategic role during the Vietnam War. Learn about the ingenuity and resilience of the people who lived and fought here, and see the various traps and hidden doors used for survival.',
+    img: '/assets/activities/Cu Chi Tunnels.jpg',
+    gallery: ['/assets/activities/Cu Chi Tunnels.jpg', 'https://images.unsplash.com/photo-1559592413-7a912e75e9f1', 'https://images.unsplash.com/photo-1528127269322-539801943592']
   },
   // Dubai
   {
     id: 3, type: 'activity', name: 'Burj Khalifa At The Top (Levels 124 & 125)', city: 'Dubai', price: '3,200', rating: 4.7, tag: 'Must Visit',
     desc: 'Witness breathtaking views of Dubai from the world\'s tallest building.',
-    img: 'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?q=80&w=1000&auto=format&fit=crop'
+    longDesc: 'Soar to the heights of modern engineering. "At The Top" Burj Khalifa offers panoramic views of the Dubai skyline, desert, and ocean from levels 124 and 125. Use the high-powered telescopes to see distant landmarks and learn more about the construction of this world-record-breaking skyscraper.',
+    img: 'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?q=80&w=1000&auto=format&fit=crop',
+    gallery: ['https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5', '/assets/activities/dubai.png', 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c']
   },
   {
     id: 10, type: 'activity', name: 'Premium Red Dunes Camel Safari', city: 'Dubai', price: '4,500', rating: 4.8, tag: 'Adventure',
     desc: 'Experience dune bashing, camel riding, and a traditional BBQ dinner in the desert.',
-    img: '/assets/activities/Premium Red Dunes Camel Safari.jpg'
+    longDesc: 'Embark on a quintessentially Arabian adventure. This premium safari includes thrilling dune bashing in a 4x4, peaceful camel treks across the red sands, and sunset photo opportunities. The evening concludes at a traditional Bedouin camp with live performances and a gourmet BBQ dinner under the stars.',
+    img: '/assets/activities/Premium Red Dunes Camel Safari.jpg',
+    gallery: ['/assets/activities/Premium Red Dunes Camel Safari.jpg', '/assets/activities/dubai.png', 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3']
   },
   // Vadodara
   {
     id: 4, type: 'activity', name: 'Laxmi Vilas Palace Heritage Tour', city: 'Vadodara', price: '1,200', rating: 4.9, tag: 'History',
     desc: 'Explore the grand architecture and royal history of the world\'s largest private residence.',
-    img: '/assets/activities/Laxmi Vilas Palace.jpg'
+    longDesc: 'Discover the opulence of the Gaekwad dynasty. The Laxmi Vilas Palace, still the residence of the royal family, is four times the size of Buckingham Palace. Marvel at the Indo-Saracenic architecture, the intricate mosaic floors, the collection of armor and sculptures, and the lush gardens surrounding the estate.',
+    img: '/assets/activities/Laxmi Vilas Palace.jpg',
+    gallery: ['/assets/activities/Laxmi Vilas Palace.jpg', '/assets/activities/vadodara.png', 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0']
   },
   {
     id: 11, type: 'activity', name: 'Statue of Unity Day Trip', city: 'Vadodara', price: '2,500', rating: 4.9, tag: 'Culture & Sightseeing',
     desc: 'Visit the world\'s tallest statue dedicated to the Iron Man of India, Sardar Vallabhbhai Patel.',
-    img: '/assets/activities/SOUT.jpg'
+    longDesc: 'A tribute to the unifier of India. Standing at 182 meters, the Statue of Unity is a marvel of engineering. This day trip includes access to the viewing gallery at the statue\'s chest, a visit to the Valley of Flowers, the Sardar Sarovar Dam, and a spectacular laser light and sound show in the evening.',
+    img: '/assets/activities/SOUT.jpg',
+    gallery: ['/assets/activities/SOUT.jpg', '/assets/activities/vadodara.png', 'https://images.unsplash.com/photo-1621217646197-29007c08bca0']
   },
   // Singapore
   {
     id: 5, type: 'activity', name: 'Gardens by the Bay Entry Ticket', city: 'Singapore', price: '2,100', rating: 4.8, tag: 'Nature',
     desc: 'Wander through the futuristic Supertrees and the stunning Cloud Forest conservatory.',
-    img: '/assets/activities/Gardens by the Bay.jpg'
+    longDesc: 'Step into a world of botanical wonder. Gardens by the Bay combines state-of-the-art technology with lush greenery. Your ticket includes access to the Flower Dome, the Cloud Forest with its indoor waterfall, and the iconic Supertree Grove. It\'s a futuristic oasis in the heart of the city.',
+    img: '/assets/activities/Gardens by the Bay.jpg',
+    gallery: ['/assets/activities/Gardens by the Bay.jpg', '/assets/activities/skydeck.png', 'https://images.unsplash.com/photo-1525625293386-3fb0ad7c1fe6']
   },
   {
     id: 12, type: 'activity', name: 'Universal Studios Singapore', city: 'Singapore', price: '5,800', rating: 4.8, tag: 'Theme Park',
     desc: 'Experience cutting-edge rides, shows, and attractions based on your favorite blockbuster films.',
-    img: '/assets/activities/Universal Studios Singapore.jpg'
+    longDesc: 'Jump into the action at Universal Studios Singapore. With seven themed zones based on Hollywood favorites like Transformers, Jurassic Park, and Shrek, it offers thrills for all ages. Enjoy spectacular shows, meet your favorite characters, and experience world-class roller coasters and immersive digital rides.',
+    img: '/assets/activities/Universal Studios Singapore.jpg',
+    gallery: ['/assets/activities/Universal Studios Singapore.jpg', '/assets/activities/skydeck.png', 'https://images.unsplash.com/photo-1554284126-aa88f22d8b74']
   },
   // Oman
   {
     id: 6, type: 'activity', name: 'Wadi Shab & Bimmah Sinkhole Tour', city: 'Oman', price: '6,200', rating: 4.8, tag: 'Adventure',
     desc: 'Hike through breathtaking wadis and swim in the emerald waters of Bimmah Sinkhole.',
-    img: '/assets/activities/Wadi Shab & Bimmah Sinkhole Tour.jpg'
+    longDesc: 'Explore the natural wonders of Oman. Hike through the stunning Wadi Shab with its emerald pools and hidden waterfalls. Then, visit the Bimmah Sinkhole, a crystal-clear turquoise pool formed by geological subsidence, perfect for a refreshing swim in a unique setting.',
+    img: '/assets/activities/Wadi Shab & Bimmah Sinkhole Tour.jpg',
+    gallery: ['/assets/activities/Wadi Shab & Bimmah Sinkhole Tour.jpg', 'https://images.unsplash.com/photo-1552554650-dc20ce13b632', 'https://images.unsplash.com/photo-1616035287790-255d644781bb']
   },
   {
     id: 13, type: 'activity', name: 'Wahiba Sands Desert Safari', city: 'Oman', price: '7,500', rating: 4.9, tag: 'Adventure',
     desc: 'Explore the rolling sand dunes of Wahiba Sands followed by a dip in Wadi Bani Khalid.',
-    img: '/assets/activities/Wahiba Sands Desert Safari.jpg'
+    longDesc: 'Experience the raw beauty of the Omani desert. Journey deep into the Wahiba Sands to witness the shifting patterns of the dunes. Meet a local Bedouin family and learn about their traditional way of life. Complement the desert heat with a dip in the pristine Wadi Bani Khalid, a natural oasis with flowing water year-round.',
+    img: '/assets/activities/Wahiba Sands Desert Safari.jpg',
+    gallery: ['/assets/activities/Wahiba Sands Desert Safari.jpg', 'https://images.unsplash.com/photo-1551043047-1d2adf00f3fe', 'https://images.unsplash.com/photo-1616035287790-255d644781bb']
   },
   // Bali
   {
     id: 7, type: 'activity', name: 'Ubud Monkey Forest & Swing', city: 'Bali', price: '2,800', rating: 4.7, tag: 'Culture & Nature',
     desc: 'Interact with macaques in lush forests and experience the iconic Bali jungle swing.',
-    img: '/assets/activities/Ubud Monkey Forest & Swing.jpg'
+    longDesc: 'Immerse yourself in the spiritual heart of Bali. Explore the sacred Ubud Monkey Forest, home to hundreds of long-tailed macaques and ancient temple ruins. Then, feel the adrenaline as you swing over the lush Tegalalang rice terraces, capturing that perfect iconic Bali photo.',
+    img: '/assets/activities/Ubud Monkey Forest & Swing.jpg',
+    gallery: ['/assets/activities/Ubud Monkey Forest & Swing.jpg', 'https://images.unsplash.com/photo-1537996194471-e657df975ab4', 'https://images.unsplash.com/photo-1506744038136-46273834b3fb']
   },
   {
     id: 14, type: 'activity', name: 'Mount Batur Sunrise Trek', city: 'Bali', price: '3,500', rating: 4.8, tag: 'Adventure',
     desc: 'Hike an active volcano under the stars and witness a breathtaking sunrise from the summit.',
-    img: '/assets/activities/Mount Batur Sunrise Trek.jpg'
+    longDesc: 'A truly rewarding physical and visual experience. Hike the active Mount Batur volcano under the starlight to reach the summit just before dawn. As the sun rises over the horizon, you\'ll be treated to spectacular views of Lake Batur and the surrounding volcanic landscapes, all while enjoying a light breakfast cooked with volcanic steam.',
+    img: '/assets/activities/Mount Batur Sunrise Trek.jpg',
+    gallery: ['/assets/activities/Mount Batur Sunrise Trek.jpg', 'https://images.unsplash.com/photo-1512100256448-a550d1736000', 'https://images.unsplash.com/photo-1537996194471-e657df975ab4']
   }
 ];
 

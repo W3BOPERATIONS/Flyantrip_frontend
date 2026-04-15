@@ -10,10 +10,10 @@
  * - 'status/info'  → Simple status card (used for train, PNR, visa)
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plane, Compass, Globe2, MapPin, ShieldCheck, ArrowRightLeft, Search } from 'lucide-react';
+import { Plane, Compass, Globe2, MapPin, ShieldCheck, ArrowRightLeft, Search, X, ChevronLeft, ChevronRight, Star, Clock, Info } from 'lucide-react';
 
 /**
  * Displays all search results as an animated, scrollable list.
@@ -24,6 +24,8 @@ import { Plane, Compass, Globe2, MapPin, ShieldCheck, ArrowRightLeft, Search } f
  */
 const ResultsSection = ({ results, activeTab }) => {
   const navigate = useNavigate();
+  const [selectedActivity, setSelectedActivity] = useState(null);
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
   return (
     <AnimatePresence>
       {results.length > 0 && (
@@ -158,7 +160,13 @@ const ResultsSection = ({ results, activeTab }) => {
                             <div className="text-[10px] font-black text-brand-black/40 uppercase tracking-widest mb-1">Price per person</div>
                             <div className="text-3xl font-black text-brand-black">₹{r.price}</div>
                           </div>
-                          <button className="bg-brand-black text-white px-8 h-12 rounded-xl font-bold transition-all hover:bg-brand-red hover:shadow-lg active:scale-95 flex items-center gap-2">
+                          <button 
+                            onClick={() => {
+                              setSelectedActivity(r);
+                              setActiveImageIdx(0);
+                            }}
+                            className="bg-brand-black text-white px-8 h-12 rounded-xl font-bold transition-all hover:bg-brand-red hover:shadow-lg active:scale-95 flex items-center gap-2"
+                          >
                             Book Now <ArrowRightLeft size={16} />
                           </button>
                         </div>
@@ -183,6 +191,126 @@ const ResultsSection = ({ results, activeTab }) => {
           </div>
         </motion.section>
       )}
+      {/* Activity Details Modal */}
+      <AnimatePresence>
+        {selectedActivity && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedActivity(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+            />
+
+            {/* Modal Content */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative bg-white w-full max-w-5xl h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row mx-auto"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setSelectedActivity(null)}
+                className="absolute top-6 right-6 z-50 w-10 h-10 bg-black/5 text-brand-black rounded-full flex items-center justify-center hover:bg-black/10 transition-all active:scale-90 border border-black/5"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Gallery Section */}
+              <div className="w-full md:w-[45%] h-full relative bg-black shrink-0">
+                <AnimatePresence mode="wait">
+                  <motion.img 
+                    key={activeImageIdx}
+                    src={selectedActivity.gallery?.[activeImageIdx] || selectedActivity.img}
+                    alt={selectedActivity.name}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="w-full h-full object-cover"
+                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1200x800/f8f9fa/a8a29e?text=Image+Unavailable'; }}
+                  />
+                </AnimatePresence>
+
+                {/* Gallery Nav */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 px-4 py-2 bg-black/30 backdrop-blur-md rounded-full border border-white/10">
+                  {selectedActivity.gallery?.map((img, idx) => (
+                    <button 
+                      key={idx}
+                      onClick={() => setActiveImageIdx(idx)}
+                      className={`w-2 h-2 rounded-full transition-all ${idx === activeImageIdx ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/60'}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Arrows */}
+                <button 
+                  onClick={() => setActiveImageIdx(prev => (prev === 0 ? (selectedActivity.gallery?.length - 1) : prev - 1))}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/10 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-white/20 border border-white/10"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button 
+                  onClick={() => setActiveImageIdx(prev => (prev === (selectedActivity.gallery?.length - 1) ? 0 : prev + 1))}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/10 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-white/20 border border-white/10"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+
+              {/* Info Section */}
+              <div className="flex-1 p-8 md:p-10 flex flex-col h-full overflow-hidden">
+                <div className="overflow-y-auto pr-2 custom-scrollbar flex-1 mb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="bg-brand-red/10 text-brand-red text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
+                      {selectedActivity.tag}
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-3xl font-black text-brand-black mb-3 leading-tight tracking-tight">{selectedActivity.name}</h2>
+                  
+                  <div className="flex flex-wrap gap-4 mb-6 text-[13px] font-bold text-brand-black/40">
+                    <span className="flex items-center gap-1.5"><MapPin size={16} className="text-brand-red" /> {selectedActivity.city}</span>
+                    <span className="flex items-center gap-1.5 text-brand-black">
+                      <Star size={16} className="text-yellow-400 fill-yellow-400" /> 
+                      {selectedActivity.rating} <span className="text-brand-black/20 font-medium">(Premium)</span>
+                    </span>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="bg-black/[0.02] border border-black/5 p-5 rounded-[1.5rem]">
+                      <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-black/30 mb-2 flex items-center gap-2">
+                        <Info size={12} /> Full Description
+                      </h4>
+                      <p className="text-brand-black/70 font-medium leading-relaxed text-[15px] italic">
+                        {selectedActivity.longDesc || selectedActivity.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-auto flex items-center justify-between p-6 bg-brand-black text-white rounded-[1.5rem] shadow-xl shadow-black/10">
+                  <div>
+                    <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-0.5">Total Price</div>
+                    <div className="text-2xl font-black italic">₹{selectedActivity.price}</div>
+                  </div>
+                  <button 
+                    className="bg-brand-red text-white px-8 h-12 rounded-xl font-black text-[15px] transition-all hover:bg-white hover:text-brand-red active:scale-95 shadow-lg shadow-brand-red/20"
+                    onClick={() => {
+                      alert(`Booking initiated for: ${selectedActivity.name}`);
+                      setSelectedActivity(null);
+                    }}
+                  >
+                    Confirm Booking
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </AnimatePresence>
   );
 };
