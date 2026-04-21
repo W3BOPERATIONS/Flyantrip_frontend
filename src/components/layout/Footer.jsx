@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Globe2, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -21,42 +22,70 @@ const Footer = () => (
           </Link>
           <p className="text-white/40 text-sm max-w-xs leading-relaxed">Elevating global travel through professional precision and uncompromising luxury.</p>
           <div className="flex gap-3">
-            <div className="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-white/40 hover:bg-brand-red/20 hover:text-brand-red transition-all cursor-pointer">
+            <motion.div 
+              whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,51,51,0.2)', color: '#ce3131' }}
+              whileTap={{ scale: 0.9 }}
+              className="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-white/40 transition-all cursor-pointer"
+            >
               <Globe2 size={16} />
-            </div>
-            <div className="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-white/40 hover:bg-brand-red/20 hover:text-brand-red transition-all cursor-pointer">
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,51,51,0.2)', color: '#ce3131' }}
+              whileTap={{ scale: 0.9 }}
+              className="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-white/40 transition-all cursor-pointer"
+            >
               <Instagram size={16} />
-            </div>
-            <div 
-              className="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-white/40 hover:bg-brand-red/20 hover:text-brand-red transition-all cursor-pointer"
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,51,51,0.2)', color: '#ce3131' }}
+              whileTap={{ scale: 0.9 }}
+              className="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-white/40 transition-all cursor-pointer"
               title="X (Twitter)"
             >
               <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-current">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
               </svg>
-            </div>
+            </motion.div>
           </div>
         </div>
         <div className="flex flex-col gap-3">
           <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-1">Company</h4>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">About Us</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Careers</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Press</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Trust & Safety</a>
+          {['About Us', 'Careers', 'Press', 'Trust & Safety'].map(link => (
+            <motion.a 
+              key={link}
+              href="#" 
+              whileHover={{ x: 5, color: '#fff' }}
+              className="text-white/30 text-sm transition-all"
+            >
+              {link}
+            </motion.a>
+          ))}
         </div>
         <div className="flex flex-col gap-3">
           <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-1">Services</h4>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Flight Booking</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Curated Tours</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Visa Services</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Corporate Travel</a>
+          {['Flight Booking', 'Curated Tours', 'Visa Services', 'Corporate Travel'].map(link => (
+            <motion.a 
+              key={link}
+              href="#" 
+              whileHover={{ x: 5, color: '#fff' }}
+              className="text-white/30 text-sm transition-all"
+            >
+              {link}
+            </motion.a>
+          ))}
         </div>
         <div className="flex flex-col gap-3">
           <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-1">Support</h4>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Help Center</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Terms of Service</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="text-white/30 text-sm hover:text-white transition-colors">Cookie Policy</a>
+          {['Help Center', 'Terms of Service', 'Privacy Policy', 'Cookie Policy'].map(link => (
+            <motion.a 
+              key={link}
+              href="#" 
+              whileHover={{ x: 5, color: '#fff' }}
+              className="text-white/30 text-sm transition-all"
+            >
+              {link}
+            </motion.a>
+          ))}
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-white/20 text-xs font-bold uppercase tracking-wider">

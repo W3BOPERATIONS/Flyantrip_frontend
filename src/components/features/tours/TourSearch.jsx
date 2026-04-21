@@ -105,34 +105,33 @@ const TourSearch = ({
     <div className="flex gap-4 items-end">
       {/* Search Input */}
       <div className="relative flex-1">
-        <div
+        <motion.div
           ref={inputRef}
-          className="flex items-center gap-3 bg-white border-2 rounded-xl px-4 py-3 transition-all"
-          style={{ borderColor: showTourMenu ? '#e63946' : 'rgba(0,0,0,0.1)' }}
+          whileHover={{ scale: 1.01 }}
+          className="flex items-center gap-3 bg-white border-2 rounded-xl px-4 py-3 transition-all cursor-text focus-within:shadow-lg"
+          style={{ borderColor: showTourMenu ? '#ce3131' : 'rgba(0,0,0,0.1)' }}
         >
-          <Search size={18} style={{ color: '#e63946', flexShrink: 0 }} />
+          <Search size={18} className="text-brand-red shrink-0" />
           <input
             type="text"
             value={query}
             onChange={e => { setQuery(e.target.value); openMenu(); }}
             onFocus={openMenu}
             placeholder="Search tour destinations & packages"
-            style={{
-              width: '100%',
-              border: 'none',
-              outline: 'none',
-              fontSize: '15px',
-              fontWeight: 500,
-              background: 'transparent',
-              color: '#1a1a2e',
-            }}
+            className="w-full border-none outline-none text-[15px] font-semibold bg-transparent text-brand-black placeholder:text-brand-black/30"
           />
           {query && (
-            <button onClick={() => setQuery('')}>
-              <X size={16} style={{ color: '#aaa' }} />
-            </button>
+            <motion.button 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setQuery('')}
+            >
+              <X size={16} className="text-brand-black/30" />
+            </motion.button>
           )}
-        </div>
+        </motion.div>
 
         {/* Dropdown Panel */}
         <AnimatePresence>
@@ -200,43 +199,28 @@ const TourSearch = ({
                 <span style={{ fontSize: '12px', fontWeight: 700, color: '#888', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   {query.trim() ? 'Results' : 'Recommended destinations'}
                 </span>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(4, 1fr)',
-                  gap: '10px',
-                  marginTop: '12px',
-                }}>
-                  {filtered.map(dest => (
-                    <div
+                <div className="grid grid-cols-4 gap-3 mt-3">
+                  {filtered.map((dest, i) => (
+                    <motion.div
                       key={dest}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      whileHover={{ scale: 1.04, y: -4 }}
                       onClick={() => selectDest(dest)}
-                      style={{
-                        position: 'relative', borderRadius: '12px', overflow: 'hidden',
-                        aspectRatio: '4/3', cursor: 'pointer',
-                        boxShadow: '0 2px 10px rgba(0,0,0,0.12)',
-                        transition: 'transform 0.2s, box-shadow 0.2s',
-                      }}
-                      onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.22)'; }}
-                      onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.12)'; }}
+                      className="relative rounded-xl overflow-hidden aspect-square cursor-pointer shadow-md hover:shadow-xl transition-all"
                     >
                       <img
                         src={DEST_IMAGES[dest] || `https://source.unsplash.com/400x300/?${dest},travel`}
                         alt={dest}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        className="w-full h-full object-cover"
                         onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/f8f9fa/a8a29e?text=' + encodeURIComponent(dest); }}
                       />
-                      <div style={{
-                        position: 'absolute', inset: 0,
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%)',
-                      }} />
-                      <span style={{
-                        position: 'absolute', bottom: '8px', left: '10px',
-                        color: '#fff', fontSize: '13px', fontWeight: 700,
-                        textShadow: '0 1px 4px rgba(0,0,0,0.5)',
-                      }}>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                      <span className="absolute bottom-3 left-3 text-white text-xs font-bold drop-shadow-md">
                         {dest}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -246,24 +230,14 @@ const TourSearch = ({
       </div>
 
       {/* Search Button */}
-      <button
+      <motion.button
+        whileHover={{ scale: 1.05, backgroundColor: '#ce3131' }}
+        whileTap={{ scale: 0.95 }}
         onClick={handleSearch}
-        style={{
-          display: 'flex', alignItems: 'center', gap: '10px',
-          background: '#1a1a2e', color: '#fff',
-          height: '54px', padding: '0 28px',
-          borderRadius: '12px', border: 'none',
-          fontSize: '15px', fontWeight: 700, cursor: 'pointer',
-          transition: 'background 0.2s, transform 0.1s',
-          whiteSpace: 'nowrap',
-        }}
-        onMouseEnter={e => e.currentTarget.style.background = '#e63946'}
-        onMouseLeave={e => e.currentTarget.style.background = '#1a1a2e'}
-        onMouseDown={e => e.currentTarget.style.transform = 'scale(0.96)'}
-        onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+        className="flex items-center gap-3 bg-brand-black text-white h-[54px] px-8 rounded-xl text-sm font-bold transition-all hover:shadow-lg whitespace-nowrap"
       >
         <Search size={18} /> Find Tours
-      </button>
+      </motion.button>
     </div>
   );
 };

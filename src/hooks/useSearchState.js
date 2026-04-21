@@ -160,6 +160,7 @@ export const useSearchState = () => {
 
     setSearching(true);
     setResults([]);
+    navigate('/results');
 
     // Simulate a network delay of 1.2 seconds before showing mock results
     setTimeout(() => {
@@ -198,7 +199,6 @@ export const useSearchState = () => {
       }
       setResults(mockResults);
       setSearching(false);
-      navigate('/results');
     }, 1200);
   };
 

@@ -76,13 +76,24 @@ const Navbar = ({ activeTab, setActiveTab }) => {
   }, [isHome, location.pathname]);
 
   return (
-    <nav className="sticky top-0 z-[1000] h-[64px] flex items-stretch bg-white/80 backdrop-blur-xl border-b border-black/5 shadow-sm">
+    <motion.nav 
+      initial={{ y: -64 }}
+      animate={{ y: 0 }}
+      className="sticky top-0 z-[1000] h-[64px] flex items-stretch bg-white/80 backdrop-blur-xl border-b border-black/5 shadow-sm transition-all duration-500"
+    >
       <div className="max-w-[1200px] w-full mx-auto px-6 flex justify-between items-stretch h-full">
         <div className="flex items-stretch gap-8">
           {/* Logo — clicking it always goes back to the home page */}
           <div className="flex items-center">
             <Link to="/">
-              <img src="/logos/logo.png" alt="FlyAnyTrip" className="h-10 w-auto cursor-pointer" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/160x40/f8f9fa/a8a29e?text=FlyAnyTrip'; }} />
+              <motion.img 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                src="/logos/logo.png" 
+                alt="FlyAnyTrip" 
+                className="h-10 w-auto cursor-pointer" 
+                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/160x40/f8f9fa/a8a29e?text=FlyAnyTrip'; }} 
+              />
             </Link>
           </div>
 
@@ -91,10 +102,10 @@ const Navbar = ({ activeTab, setActiveTab }) => {
             {showNavTabs && (
               <motion.div
                 className="flex gap-8"
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
                 {TABS.map((tab) => (
                   <a
@@ -125,15 +136,23 @@ const Navbar = ({ activeTab, setActiveTab }) => {
 
         {/* Right side action buttons */}
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 text-sm font-semibold cursor-pointer text-brand-black opacity-70 hover:opacity-100">
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-2 text-sm font-semibold cursor-pointer text-brand-black opacity-70 hover:opacity-100 transition-opacity"
+          >
             <CreditCard size={18} /> My Bookings
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-black/5 rounded-full cursor-pointer text-brand-black hover:bg-black/10 transition-colors">
+          </motion.div>
+          <motion.div 
+            whileHover={{ scale: 1.05, backgroundColor: 'rgba(0,0,0,0.08)' }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-black/5 rounded-full cursor-pointer text-brand-black transition-all"
+          >
             <UserCircle2 size={24} /> Account
-          </div>
+          </motion.div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

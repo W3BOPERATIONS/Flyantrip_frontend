@@ -16,38 +16,136 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plane, Compass, Globe2, MapPin, ShieldCheck, ArrowRightLeft, Search, X, ChevronLeft, ChevronRight, Star, Clock, Info, Heart, Share2, Facebook, Twitter, Link, Phone } from 'lucide-react';
 
 /**
+ * Skeleton loader component that mimics the result card layout.
+ */
+const SkeletonCard = ({ type }) => {
+  if (type === 'flights') {
+    return (
+      <div className="bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden flex flex-col md:flex-row h-auto md:h-[200px]">
+        <div className="p-8 flex-1">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 skeleton skeleton-shimmer rounded-2xl" />
+              <div className="space-y-2">
+                <div className="w-32 h-6 skeleton skeleton-shimmer" />
+                <div className="w-20 h-4 skeleton skeleton-shimmer" />
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <div className="w-24 h-8 skeleton skeleton-shimmer rounded-full" />
+            </div>
+          </div>
+          <div className="flex items-center justify-between gap-12">
+            <div className="w-20 h-10 skeleton skeleton-shimmer" />
+            <div className="flex-1 h-2 skeleton skeleton-shimmer" />
+            <div className="w-20 h-10 skeleton skeleton-shimmer" />
+          </div>
+        </div>
+        <div className="bg-black/[0.02] border-l border-black/5 p-8 w-full md:w-72 flex flex-col justify-center items-center">
+          <div className="w-16 h-4 skeleton skeleton-shimmer mb-2" />
+          <div className="w-32 h-10 skeleton skeleton-shimmer mb-6" />
+          <div className="w-full h-14 skeleton skeleton-shimmer rounded-xl" />
+        </div>
+      </div>
+    );
+  }
+
+  if (type === 'tours' || type === 'activity') {
+    return (
+      <div className="flex flex-col md:flex-row h-full md:h-64 bg-white rounded-3xl overflow-hidden border border-black/5 shadow-sm">
+        <div className="w-full md:w-80 h-48 md:h-auto skeleton skeleton-shimmer" />
+        <div className="p-8 flex-1 flex flex-col">
+          <div className="mb-4">
+            <div className="w-2/3 h-8 skeleton skeleton-shimmer mb-4" />
+            <div className="w-1/3 h-4 skeleton skeleton-shimmer" />
+          </div>
+          <div className="w-full h-12 skeleton skeleton-shimmer mb-6" />
+          <div className="mt-auto flex items-center justify-between pt-6 border-t border-black/5">
+            <div className="w-24 h-10 skeleton skeleton-shimmer" />
+            <div className="w-40 h-14 skeleton skeleton-shimmer rounded-xl" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-8 flex items-center gap-8 border-l-8 border-brand-red h-32 bg-white rounded-3xl shadow-sm">
+      <div className="w-16 h-16 skeleton skeleton-shimmer rounded-full" />
+      <div className="flex-1 space-y-3">
+        <div className="w-1/2 h-8 skeleton skeleton-shimmer" />
+        <div className="w-3/4 h-6 skeleton skeleton-shimmer" />
+      </div>
+    </div>
+  );
+};
+
+/**
  * Displays all search results as an animated, scrollable list.
  * Each result is rendered with a different card layout based on its type.
  *
  * @param results   - Array of result objects returned from the search
  * @param activeTab - The current search tab (e.g. 'flights', 'tours')
+ * @param loading   - Whether search results are currently being loaded
  */
-const ResultsSection = ({ results, activeTab }) => {
+const ResultsSection = ({ results, activeTab, loading }) => {
   const navigate = useNavigate();
+  
   return (
     <AnimatePresence>
-      {results.length > 0 && (
-        <motion.section id="search-results-section" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-black/[0.02]">
+      {(results.length > 0 || loading) && (
+        <motion.section 
+          id="search-results-section" 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          exit={{ opacity: 0 }}
+          className="bg-transparent"
+        >
           <div className="max-w-[1200px] mx-auto py-16 px-6">
-            <div className="flex justify-between items-end mb-10 border-b border-black/5 pb-6">
+            <div className="flex justify-between items-end mb-10 pb-6">
               <div>
                 <h2 className="text-3xl font-extrabold text-brand-black mb-2">{
                   { flights: 'Flights', tours: 'Tours', visa: 'Visa', activity: 'Activity', train: 'Train Status', pnr: 'PNR Status' }[activeTab]
                 } Results</h2>
-                <p className="text-brand-black/50 font-medium italic">Showing {results.length} professional results</p>
+                <p className="text-brand-black/50 font-medium italic">
+                  {loading ? 'Searching for professional matches...' : `Showing ${results.length} professional results`}
+                </p>
               </div>
             </div>
+
             <div className="flex flex-col gap-6">
-              {results.map(r => (
-                <div key={r.id} className="bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-xl group hover:border-brand-red/20">
+              {loading ? (
+                // Render skeletons while loading
+                [...Array(activeTab === 'flights' ? 3 : (activeTab === 'tours' || activeTab === 'activity' ? 4 : 1))].map((_, i) => (
+                  <motion.div
+                    key={`skeleton-${i}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <SkeletonCard type={activeTab} />
+                  </motion.div>
+                ))
+              ) : (
+                results.map((r, i) => (
+                  <motion.div 
+                    key={r.id} 
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                    className="bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-xl group hover:border-brand-red/20"
+                  >
                   {r.type === 'flight' && (
                     <div className="flex flex-col md:flex-row">
                       <div className="p-8 flex-1">
                         <div className="flex items-center justify-between mb-8">
                           <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-brand-red/5 text-brand-red rounded-2xl flex items-center justify-center">
+                            <motion.div 
+                              whileHover={{ scale: 1.1, rotate: 5 }}
+                              className="w-12 h-12 bg-brand-red/5 text-brand-red rounded-2xl flex items-center justify-center"
+                            >
                               <Plane size={24} />
-                            </div>
+                            </motion.div>
                             <div>
                               <div className="text-lg font-bold text-brand-black">{r.airline}</div>
                               <div className="text-sm font-semibold text-brand-black/40 uppercase tracking-widest">{r.flight}</div>
@@ -81,13 +179,19 @@ const ResultsSection = ({ results, activeTab }) => {
                       <div className="bg-black/[0.02] border-l border-black/5 p-8 w-full md:w-72 flex flex-col justify-center items-center text-center group-hover:bg-brand-red/[0.02] transition-colors">
                         <div className="text-[11px] font-bold text-brand-black/40 uppercase tracking-wider mb-1">Per person</div>
                         <div className="text-3xl font-black text-brand-black mb-6">₹{r.price}</div>
-                        <button className="w-full bg-brand-black text-white py-4 rounded-xl font-bold transition-all hover:bg-brand-red hover:shadow-lg active:scale-95">Select Flight</button>
+                        <motion.button 
+                          whileHover={{ scale: 1.05, backgroundColor: '#ce3131' }}
+                          whileTap={{ scale: 0.95 }}
+                          className="w-full bg-brand-black text-white py-4 rounded-xl font-bold transition-all hover:shadow-lg"
+                        >
+                          Select Flight
+                        </motion.button>
                       </div>
                     </div>
                   )}
 
                   {(r.type === 'tour' || r.type === 'tour_custom') && (
-                    <div className={`flex flex-col md:flex-row h-full md:h-64 bg-white rounded-3xl overflow-hidden border transition-all ${r.type === 'tour_custom' ? 'border-brand-red/30 shadow-lg relative' : 'border-black/5 shadow-sm hover:shadow-xl group hover:border-brand-red/20'}`}>
+                    <div className={`flex flex-col md:flex-row h-full md:h-64 bg-white rounded-3xl overflow-hidden border transition-all ${r.type === 'tour_custom' ? 'border-brand-red/30 shadow-lg relative' : 'border-black/5 shadow-sm group hover:border-brand-red/20'}`}>
                       {r.type === 'tour_custom' && (
                         <div className="absolute top-4 -right-12 bg-white text-brand-red text-[10px] font-black uppercase shadow-xl tracking-widest py-1.5 px-12 rotate-45 z-20 pointer-events-none">
                           Top Pick
@@ -121,12 +225,14 @@ const ResultsSection = ({ results, activeTab }) => {
                             <div className="text-[11px] font-bold text-brand-black/40 uppercase tracking-wider mb-1">Package Price</div>
                             <div className={`font-black ${r.type === 'tour_custom' ? 'text-brand-red text-2xl tracking-tight' : 'text-brand-black text-3xl'}`}>{r.type === 'tour_custom' ? r.price : `₹${r.price}`}</div>
                           </div>
-                          <button 
+                          <motion.button 
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                             onClick={() => navigate(`/tours/${r.id}`)}
-                            className={`px-8 h-14 rounded-xl font-bold transition-all hover:bg-brand-black active:scale-95 flex items-center gap-2 border ${r.type === 'tour_custom' ? 'bg-brand-red text-white hover:text-white border-transparent shadow-md' : 'bg-transparent border-brand-black/20 text-brand-black hover:border-brand-black'}`}
+                            className={`px-8 h-14 rounded-xl font-bold transition-all flex items-center gap-2 border ${r.type === 'tour_custom' ? 'bg-brand-red text-white border-transparent shadow-md' : 'bg-transparent border-brand-black/20 text-brand-black hover:border-brand-black'}`}
                           >
                             {r.type === 'tour_custom' ? 'Start Customizing' : 'Book Tour Now'}
-                          </button>
+                          </motion.button>
                         </div>
                       </div>
                     </div>
@@ -158,12 +264,14 @@ const ResultsSection = ({ results, activeTab }) => {
                             <div className="text-[10px] font-black text-brand-black/40 uppercase tracking-widest mb-1">Price per person</div>
                             <div className="text-3xl font-black text-brand-black">₹{r.price}</div>
                           </div>
-                          <button 
+                          <motion.button 
+                            whileHover={{ scale: 1.05, backgroundColor: '#ce3131' }}
+                            whileTap={{ scale: 0.95 }}
                             onClick={() => navigate(`/activities/${r.id}`)}
-                            className="bg-brand-black text-white px-8 h-12 rounded-xl font-bold transition-all hover:bg-brand-red hover:shadow-lg active:scale-95 flex items-center gap-2"
+                            className="bg-brand-black text-white px-8 h-12 rounded-xl font-bold transition-all hover:shadow-lg flex items-center gap-2"
                           >
                             Book Now <ArrowRightLeft size={16} />
-                          </button>
+                          </motion.button>
                         </div>
                       </div>
                     </div>
@@ -171,20 +279,25 @@ const ResultsSection = ({ results, activeTab }) => {
 
                   {(r.type === 'status' || r.type === 'info') && (
                     <div className="p-8 flex items-center gap-8 border-l-8 border-brand-red h-full">
-                      <div className="w-16 h-16 bg-brand-red/5 text-brand-red rounded-full flex items-center justify-center">
+                      <motion.div 
+                        initial={{ scale: 0.8 }}
+                        whileInView={{ scale: 1 }}
+                        className="w-16 h-16 bg-brand-red/5 text-brand-red rounded-full flex items-center justify-center"
+                      >
                         <ShieldCheck size={32} />
-                      </div>
+                      </motion.div>
                       <div>
                         <h3 className="text-2xl font-black text-brand-black mb-2 tracking-tight">{r.title}</h3>
                         <p className="text-brand-black/60 font-medium text-lg leading-relaxed">{r.desc}</p>
                       </div>
                     </div>
                   )}
-                </div>
-              ))}
-            </div>
+                </motion.div>
+              ))
+            )}
           </div>
-        </motion.section>
+        </div>
+      </motion.section>
       )}
     </AnimatePresence>
   );

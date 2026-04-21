@@ -106,8 +106,8 @@ export const allActivities = [
     id: 9, type: 'activity', name: 'Cu Chi Tunnels Half-Day Tour', city: 'Vietnam', country: 'Vietnam', price: '1,800', rating: 4.7, tag: 'History',
     desc: 'Discover the vast underground network used during the Vietnam War.',
     longDesc: 'Step into history at the Cu Chi Tunnels. Explore the 250km network of narrow underground passageways that played a strategic role during the Vietnam War. Learn about the ingenuity and resilience of the people who lived and fought here, and see the various traps and hidden doors used for survival.',
-    img: '/assets/destinations/Vietnam/tron-le-MjYzuyjPUFo-unsplash.jpg',
-    gallery: ['/assets/destinations/Vietnam/tron-le-MjYzuyjPUFo-unsplash.jpg', '/assets/destinations/Vietnam/simon-van-rompaey-WRvasYD88eM-unsplash.jpg']
+    img: '/assets/activities/Cu Chi Tunnels.jpg',
+    gallery: ['/assets/activities/Cu Chi Tunnels.jpg', '/assets/destinations/Vietnam/simon-van-rompaey-WRvasYD88eM-unsplash.jpg']
   },
   // Dubai
   {

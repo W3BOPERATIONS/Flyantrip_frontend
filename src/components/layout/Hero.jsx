@@ -52,7 +52,14 @@ const Hero = ({ children }) => (
     </div>
 
     {/* Search Card rendered inside hero background */}
-    {children}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3, duration: 0.8 }}
+      className="w-full flex justify-center"
+    >
+      {children}
+    </motion.div>
   </section>
 );
 

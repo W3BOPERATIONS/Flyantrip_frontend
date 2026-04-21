@@ -35,14 +35,14 @@ const SearchComponents = {
  */
 const SearchResults = () => {
   const searchState = useSearchContext();
-  const { results, activeTab, searchError } = searchState;
+  const { results, activeTab, searching, searchError } = searchState;
   const navigate = useNavigate();
   
   // Pick the right search form for whichever tab is currently active
   const ActiveSearch = SearchComponents[activeTab];
 
   return (
-    <div className="min-h-screen bg-black/[0.02] pb-20">
+    <div className="min-h-screen bg-white pb-20">
       {/* Search Bar Condensed View */}
       <div className="bg-white border-b border-black/5 pt-6 pb-6 shadow-sm mb-8">
         <div className="max-w-[1200px] mx-auto px-6">
@@ -70,7 +70,7 @@ const SearchResults = () => {
       
       {/* Search Results */}
       <div className="max-w-[1200px] mx-auto px-6">
-        <ResultsSection results={results} activeTab={activeTab} />
+        <ResultsSection results={results} activeTab={activeTab} loading={searching} />
       </div>
     </div>
   );
